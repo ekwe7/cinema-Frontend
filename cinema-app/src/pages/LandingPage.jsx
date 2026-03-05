@@ -143,7 +143,7 @@ export default function LandingPage() {
                   <div className="lp-movie-meta">
                     <span>{movie.duration}</span>
                     <span className="lp-movie-dot">·</span>
-                    <span className="lp-movie-rating">★★★ {movie.rating}</span>
+                    <span className="lp-movie-rating">★★ {movie.rating}</span>
                   </div>
                 </div>
               </div>

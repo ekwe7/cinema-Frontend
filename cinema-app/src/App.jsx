@@ -1,23 +1,46 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { AuthProvider } from "./context/authContext";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider, RequireUser, RequireAdmin } from "./auth/AuthContext";
 
+// Public
+import LandingPage from "./pages/LandingPage";
+import UserLogin   from "./auth/UserLogin";
+import AdminLogin  from "./auth/AdminLogin";   // ← no public link to this
 
-import LandingPage from "./pages/landingPage"
-import UserLogin from "./pages/userLogin"
-import AdminLogin from "./pages/adminLogin"
+// Protected apps
+import UserApp  from "./user/UserApp";
+import AdminApp from "./admin/AdminApp";
 
-function App() {
+export default function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<UserLogin />} />
-          <Route path="/register" element={<AdminLogin />} />
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
-  )
-}
+      <Routes>
 
-export default App
+        <Route path="/"          element={<LandingPage />} />
+        <Route path="/login"     element={<UserLogin />} />
+
+        <Route path="/backstage" element={<AdminLogin />} />
+
+        <Route
+          path="/*"
+          element={
+            <RequireUser>
+              <UserApp />
+            </RequireUser>
+          }
+        />
+
+        <Route
+          path="/admin/*"
+          element={
+            <RequireAdmin>
+              <AdminApp />
+            </RequireAdmin>
+          }
+        />
+
+        {/* Catch-all */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </AuthProvider>
+  );
+}
