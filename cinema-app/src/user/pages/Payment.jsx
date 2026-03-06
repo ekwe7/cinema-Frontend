@@ -9,7 +9,7 @@ import { faLock, faArrowLeft, faCircleCheck } from "@fortawesome/free-solid-svg-
 
 export default function Payment({ bookingContext }) {
   const navigate = useNavigate();
-//   const { user } = useAuth();
+  // const { user } = useAuth();
   const [method, setMethod] = useState("card");
   const [form, setForm] = useState({ name: "", number: "", expiry: "", cvv: "" });
   const [errors, setErrors] = useState({});
@@ -130,7 +130,8 @@ export default function Payment({ bookingContext }) {
             }
           </button>
           <div style={{ textAlign: "center", fontSize: 12, color: "var(--text-muted)", marginTop: 12, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
-            <FontAwesomeIcon icon={faLock} /> 256-bit SSL secured
+            <FontAwesomeIcon icon={faLock} /> 
+            256-bit SSL secured
           </div>
         </div>
       </div>

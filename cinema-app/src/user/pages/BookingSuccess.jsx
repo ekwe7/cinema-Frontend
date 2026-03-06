@@ -24,7 +24,7 @@ export default function BookingSuccess({ bookingContext }) {
           <FontAwesomeIcon icon={faCircleCheck} />
         </div>
         <div className="success-title">Booking Confirmed!</div>
-        <div className="success-sub">Your tickets have been booked. See you at the cinema!</div>
+        <div className="success-sub">Your tickets have been booked. See you at the ZeeShow!</div>
 
         {/* Ticket */}
         <div className="ticket">

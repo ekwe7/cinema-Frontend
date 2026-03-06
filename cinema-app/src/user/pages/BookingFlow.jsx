@@ -49,13 +49,13 @@ export default function BookingFlow({ bookingContext, setBookingContext }) {
 
       {/* Steps */}
       <div className="steps mb-6">
-        {STEPS.map((label, i) => (
-          <div key={label} className="flex items-center" style={{ flex: i < STEPS.length - 1 ? 1 : "none" }}>
-            <div className={`step-item step-${i < step ? "done" : i === step ? "active" : "idle"}`}>
-              <div className="step-num">{i < step ? <FontAwesomeIcon icon={faCheck} style={{ fontSize: 11 }} /> : i + 1}</div>
+        {STEPS.map((label, index) => (
+          <div key={label} className="flex items-center" style={{ flex: index < STEPS.length - 1 ? 1 : "none" }}>
+            <div className={`step-item step-${index < step ? "done" : index === step ? "active" : "idle"}`}>
+              <div className="step-num">{index < step ? <FontAwesomeIcon icon={faCheck} style={{ fontSize: 11 }} /> : index + 1}</div>
               <div className="step-label">{label}</div>
             </div>
-            {i < STEPS.length - 1 && <div className={`step-line${i < step ? " step-line-done" : ""}`} style={{ flex: 1, margin: "0 12px" }} />}
+            {index < STEPS.length - 1 && <div className={`step-line${index < step ? " step-line-done" : ""}`} style={{ flex: 1, margin: "0 12px" }} />}
           </div>
         ))}
       </div>

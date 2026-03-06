@@ -1,5 +1,3 @@
-
-
 import { useState } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,7 +8,7 @@ import BookingFlow from "./pages/BookingFlow";
 import Payment from "./pages/Payment";
 import BookingSuccess from "./pages/BookingSuccess";
 import MyBookings from "./pages/MyBookings";
-// import "../styles/user.css";
+import "../styles/user.css";
 
 const NAV = [
   { path: "/browse",      icon: faFilm,     label: "Browse Movies" },
@@ -34,7 +32,7 @@ export default function UserApp() {
     movie: null, show: null, seats: [], total: "0.00",
   });
 
-  const title = Object.entries(TITLES).find(([k]) => location.pathname.startsWith(k))?.[1] ?? "CineBook";
+  const title = Object.entries(TITLES).find(([k]) => location.pathname.startsWith(k))?.[1] ?? "ZeeShow";
 
   return (
     <div className="app-shell">
@@ -42,7 +40,7 @@ export default function UserApp() {
         <div className="sidebar-logo">
           <a href="/" className="logo-wrap">
             <div className="logo-icon"><FontAwesomeIcon icon={faFilm} /></div>
-            <span className="logo-text">CineBook</span>
+            <span className="logo-text">ZeeShow</span>
           </a>
         </div>
         <nav className="sidebar-nav">

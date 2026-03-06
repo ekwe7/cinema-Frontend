@@ -68,7 +68,7 @@ export default function AdminLogin() {
           </form>
         )}
 
-        <div style={S.hint}>Demo: <code style={S.code}>james@cinebook.com / admin123</code></div>
+        <div style={S.hint}>Demo: <code style={S.code}>james@zeeShow.com / admin123</code></div>
         <p style={S.footer}>This is a restricted area. Unauthorised access is prohibited.</p>
       </div>
     </div>

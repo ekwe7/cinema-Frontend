@@ -8,7 +8,7 @@ import AdminLogin  from "./auth/AdminLogin";   // ← no public link to this
 
 // Protected apps
 import UserApp  from "./user/UserApp";
-import AdminApp from "./admin/AdminApp";
+// import AdminApp from "./admin/AdminApp";
 
 export default function App() {
   return (
@@ -29,14 +29,15 @@ export default function App() {
           }
         />
 
-        <Route
+        {/* TODO: Create AdminApp component */}
+        {/* <Route
           path="/admin/*"
           element={
             <RequireAdmin>
               <AdminApp />
             </RequireAdmin>
           }
-        />
+        /> */}
 
         {/* Catch-all */}
         <Route path="*" element={<Navigate to="/" replace />} />

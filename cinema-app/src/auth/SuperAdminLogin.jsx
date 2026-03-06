@@ -68,7 +68,7 @@ export default function SuperAdminLogin() {
           </form>
         )}
 
-        <div style={S.hint}>Demo: <code style={S.code}>superadmin@cinebook.internal / Super@Admin2026!</code></div>
+        <div style={S.hint}>Demo: <code style={S.code}>superadmin@zeeShow.internal / Super@Admin2026!</code></div>
         <p style={S.footer}>⚠ Highest privilege access. All actions are logged.</p>
       </div>
     </div>
