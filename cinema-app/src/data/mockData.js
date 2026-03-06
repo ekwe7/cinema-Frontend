@@ -1,4 +1,4 @@
-export const MOVIE = [
+export const MOVIES = [
     {
   id: "m1",
   title: "King of Boys",
@@ -67,15 +67,16 @@ export const MOVIE = [
 
 ];
 
-export const THEATER = [
-    {id:"t1", name:"Lagos Movie Theater", city:"Lagos Island, Lagos", status: "Active"},
-    {id:"t2", name:"Kano Cinema Hall", city:"Kano City, Kano", status: "Active"},
-    {id:"t3", name:"Ibadan Grand Theater", city:"Ibadan, Oyo", status: "Maintenance"},
-    {id:"t4", name:"Enugu Multiplex", city:"Enugu City, Enugu", status: "Active"},
-    {id:"t5", name:"Port Harcourt Plaza", city:"Port Harcourt, Rivers", status: "Active"},
+export const THEATERS = [
+    {id:"t1", name:"Lagos Movie Theater", city:"Lagos Island, Lagos", status: "Active", row: 10, seatsPerRow: 10},
+    {id:"t2", name:"Kano Cinema Hall", city:"Kano City, Kano", status: "Active", row: 7, seatsPerRow: 10},
+    {id:"t3", name:"Ibadan Grand Theater", city:"Ibadan, Oyo", status: "Maintenance", row: 7, seatsPerRow: 6},
+    {id:"t4", name:"Enugu Multiplex", city:"Enugu City, Enugu", status: "Active", row: 7, seatsPerRow: 10},
+    {id:"t5", name:"Port Harcourt Plaza", city:"Port Harcourt, Rivers", status: "Active", row: 9, seatsPerRow: 8},
+    { id: "t1", name: "CineMax Downtown",  city: "New York",    status: "Active",      rows: 8, seatsPerRow: 10 },
 ];
 
-export const SHOWTIME = [
+export const SHOWS = [
       { id: "s1", movieId: "m1", theaterId: "t1", startTime: "10:00 AM", date: "2026-02-20", price: 18.5 },
       { id: "s2", movieId: "m2", theaterId: "t1", startTime: "1:30 PM", date: "2026-02-20", price: 18.5},
       { id: "s3", movieId: "m3", theaterId: "t2", startTime: "4:00 PM", date: "2026-02-20", price: 15.0 },
@@ -86,41 +87,49 @@ export const SHOWTIME = [
 
 ];
 
-export const BOOKING = [
-    { id: "BK1021", userId: "u1", movieId: "m1", showId: "s2", seats: ["D4",], total: 37.0,  status: "Confirmed", date: "2026-02-20" },
-    { id: "BK1022", userId: "u2", movieId: "m3", showId: "s3", seats: ["F1", "C2", "H2"], total: 45.0, status: "Pending", date: "2026-02-20" },
-    { id: "BK1023", userId: "u3", movieId: "m5", showId: "s5", seats: ["A2", "E1" ], total: 40.0, status: "Confirmed", date: "2026-02-20" },
-    { id: "BK1024", userId: "u4", movieId: "m7", showId: "s7", seats: ["C5", "C6", "C8"], total: 54.0, status: "Cancelled", date: "2026-02-20" },
-    { id: "BK1025", userId: "u5", movieId: "m2", showId: "s2", seats: ["B5", "B4"], total: 37.0, status: "Confirmed", date: "2026-02-20" },
-    { id: "BK1026", userId: "u1", movieId: "m4", showId: "s4", seats: ["E8"], total: 24.0, status: "Pending", date: "2026-02-20" },
-    { id: "BK1027", userId: "u2", movieId: "m6", showId: "s6", seats: ["G1", "G2"], total: 32.0, status: "Confirmed", date: "2026-02-20" }
+export const BOOKINGS = [
+    { id: "BK1021", userId: "u1", movieId: "m1", showId: "s2", theaterId: "t1", seats: ["D4",], total: 37.0,  status: "Confirmed", date: "2026-02-20" },
+    { id: "BK1022", userId: "u2", movieId: "m3", showId: "s3", theaterId: "t2", seats: ["F1", "C2", "H2"], total: 45.0, status: "Pending", date: "2026-02-20" },
+    { id: "BK1023", userId: "u3", movieId: "m5", showId: "s5", theaterId: "t3", seats: ["A2", "E1" ], total: 40.0, status: "Confirmed", date: "2026-02-20" },
+    { id: "BK1024", userId: "u4", movieId: "m7", showId: "s7", theaterId: "t4", seats: ["C5", "C6", "C8"], total: 54.0, status: "Cancelled", date: "2026-02-20" },
+    { id: "BK1025", userId: "u5", movieId: "m2", showId: "s2", theaterId: "t5", seats: ["B5", "B4"], total: 37.0, status: "Confirmed", date: "2026-02-20" },
+    { id: "BK1026", userId: "u1", movieId: "m4", showId: "s4", theaterId: "t6", seats: ["E8"], total: 24.0, status: "Pending", date: "2026-02-20" },
+    { id: "BK1027", userId: "u2", movieId: "m6", showId: "s6", theaterId: "t7", seats: ["G1", "G2"], total: 32.0, status: "Confirmed", date: "2026-02-20" }
 ];
 
-export const MOCK_USER = [
+export const MOCK_USERS = [
     { id: "u1", name: "Ekwe Dotun", email: "dotun@email.com", password: "user123", role: "user" },
     { id: "u4", name: "Ejiofor Nelson", email: "nelson@email.com", password: "user123", role: "user" },
     { id: "u5", name: "Dotun Favour", email: "favour@email.com", password: "user123", role: "user" },
     
 ];
 
-export const ADMIN_USER = [
-    { id: "u2", name: "Admin User", email: "admin@email.com", password: "admin123", role: "admin" },
-    { id: "u3", name: "Super Admin", email: "superadmin@email.com", password: "superadmin123", role: "super_admin" },
+export const THEATER_ADMINS = [
+    { id: "a2", name: "Haliya karem", email: "haliya@email.com", password: "haliya123", role: "admin", theaterId: "t2", createdDate: "2026-03-015" },
+    { id: "a3", name: "Adewole Adedotun", email: "dotun@email.com", password: "dotun123", role: "admin", theaterId: "t2", createdDate: "2026-03-06" },
 
 ]; 
 
-const BOOKED_SEATS = new Set(["A3","B5","C2","C8","D4","E1","E7","F3","F9","G6","H2","H8"]);
+export const SUPER_ADMIN = {
+  email: "superadmin@ekwe.internal",
+  password: "Super@Admin2026!",
+  name: "Ekwe Emmanuel",
+  role: "super_admin",
+};
+
+// Seat Generator
+const BOOKED = new Set(["A3","B5","C2","C8","D4","E1","E7","F3","F9","G6","H2","H8"]);
 
 
-export function generateSeats() {
-  const rows = ["A","B","C","D","E","F","G","H"];
-
-  return rows.map((row) => ({
+export function generateSeats(theaterId = "t1") {
+  const theater = THEATERS.find(t => t.id === theaterId) || THEATERS[0];
+  const rowLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").slice(0, theater.rows);
+  return rowLetters.map(row => ({
     row,
-    seats: Array.from({ length: 10 }, (_, index) => ({
-      id: `${row}${index + 1}`,
-      number: index + 1,
-      status: BOOKED_SEATS.has(`${row}${index + 1}`) ? "booked" : "available",
+    seats: Array.from({ length: theater.seatsPerRow }, (_, i) => ({
+      id: `${row}${i + 1}`,
+      number: i + 1,
+      status: BOOKED.has(`${row}${i + 1}`) ? "booked" : "available",
     })),
   }));
 }

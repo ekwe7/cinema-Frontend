@@ -1,18 +1,15 @@
 import { createContext, useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { MOCK_USERS, ADMIN_CREDENTIALS } from "../data/mockData";
+import { MOCK_USERS, THEATER_ADMINS, SUPER_ADMIN } from "../data/mockData";
 
-// ── Context ───────────────────────────────────────────────────────────────────
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null); // { id, name, email, role }
+  const [user, setUser] = useState(null);
 
-  // User login
+  //  User login
   const loginUser = (email, password) => {
-    const found = MOCK_USERS.find(
-      (u) => u.email === email && u.password === password
-    );
+    const found = MOCK_USERS.find(u => u.email === email && u.password === password);
     if (found) {
       const { password: _pw, ...safe } = found;
       setUser(safe);
@@ -21,21 +18,29 @@ export function AuthProvider({ children }) {
     return { success: false, error: "Invalid email or password." };
   };
 
-  // Admin login — credentials are checked here, never in the UI
+  // Theater Admin login
   const loginAdmin = (email, password) => {
-    if (
-      email === ADMIN_CREDENTIALS.email &&
-      password === ADMIN_CREDENTIALS.password
-    ) {
-      setUser({ name: ADMIN_CREDENTIALS.name, email, role: "admin" });
+    const found = THEATER_ADMINS.find(a => a.email === email && a.password === password);
+    if (found) {
+      const { password: _pw, ...safe } = found;
+      setUser(safe);
       return { success: true };
     }
     return { success: false, error: "Invalid admin credentials." };
   };
 
-  // Register new user
-  const register = (name, email, password) => {
-    const exists = MOCK_USERS.find((u) => u.email === email);
+  // Super Admin login
+  const loginSuperAdmin = (email, password) => {
+    if (email === SUPER_ADMIN.email && password === SUPER_ADMIN.password) {
+      setUser({ name: SUPER_ADMIN.name, email, role: "super_admin" });
+      return { success: true };
+    }
+    return { success: false, error: "Invalid super admin credentials." };
+  };
+
+  // Register user 
+    const register = (name, email, password) => {
+    const exists = MOCK_USERS.find(u => u.email === email);
     if (exists) return { success: false, error: "Email already registered." };
     const newUser = { id: `u${Date.now()}`, name, email, role: "user" };
     MOCK_USERS.push({ ...newUser, password });
@@ -46,18 +51,17 @@ export function AuthProvider({ children }) {
   const logout = () => setUser(null);
 
   return (
-    <AuthContext.Provider value={{ user, loginUser, loginAdmin, register, logout }}>
+    <AuthContext.Provider value={{ user, loginUser, loginAdmin, loginSuperAdmin, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
 }
 
-// ── Hook ──────────────────────────────────────────────────────────────────────
 export function useAuth() {
   return useContext(AuthContext);
 }
 
-// ── Route Guards ──────────────────────────────────────────────────────────────
+// Route Guards 
 export function RequireUser({ children }) {
   const { user } = useAuth();
   if (!user || user.role !== "user") return <Navigate to="/login" replace />;
@@ -66,7 +70,12 @@ export function RequireUser({ children }) {
 
 export function RequireAdmin({ children }) {
   const { user } = useAuth();
-  // Admin trying to access user routes → redirect to admin dashboard
-  if (!user || user.role !== "admin") return <Navigate to="/" replace />;
+  if (!user || user.role !== "admin") return <Navigate to="/backstage" replace />;
+  return children;
+}
+
+export function RequireSuperAdmin({ children }) {
+  const { user } = useAuth();
+  if (!user || user.role !== "super_admin") return <Navigate to="/root" replace />;
   return children;
 }
