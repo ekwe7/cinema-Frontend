@@ -59,7 +59,7 @@ export default function AdminLogin() {
             {error && (
               <div style={S.error}>
                 {error}
-                {attempts > 2 && <div style={{ fontSize: 11, marginTop: 4, opacity: 0.8 }}>{5 - attempts} attempt(s) remaining.</div>}
+                {attempts > 2 && <div style={{ fontSize: 11, opacity: 0.8 }}>{5 - attempts} attempt(s) remaining.</div>}
               </div>
             )}
             <button className="btn btn-full btn-lg" type="submit" disabled={loading} style={S.submitBtn}>

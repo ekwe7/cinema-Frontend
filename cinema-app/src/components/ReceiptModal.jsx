@@ -11,7 +11,7 @@ export default function ReceiptModal({ open, onClose, bookingId, userEmail }) {
     setLoading(true);
     
 
-    // fetch when ready from backend
+    // fetch when ready
     // await fetch("/api/receipts/send", {
     //   method: "POST",
     //   headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },

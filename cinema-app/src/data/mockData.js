@@ -46,12 +46,12 @@ export const MOVIES = [
 },
 {
   id: "m6",
-  title: "The Wedding Party",
+  // title: "The Wedding Party",
   description: "A group of friends gather for a wedding in Lagos, only to find themselves caught in a web of lies, secrets, and unexpected twists that challenge their friendships and loyalties.",
   duration: "125 min",
   rating: 7,
   genre: "Comedy/Drama",
-  poster: "💒",
+  // poster: "💒",
 }
 ,
 {
@@ -98,20 +98,20 @@ export const BOOKINGS = [
 ];
 
 export const MOCK_USERS = [
-    { id: "u1", name: "Ekwe Dotun", email: "dotun@email.com", password: "user123", role: "user" },
-    { id: "u4", name: "Ejiofor Nelson", email: "nelson@email.com", password: "user123", role: "user" },
-    { id: "u5", name: "Dotun Favour", email: "favour@email.com", password: "user123", role: "user" },
+    { id: "u1", name: "Ekwe Dotun", email: "dotun@gmail.com", password: "user123", role: "user" },
+    { id: "u4", name: "Ejiofor Nelson", email: "nelson@gmail.com", password: "user123", role: "user" },
+    { id: "u5", name: "Dotun Favour", email: "favour@gmail.com", password: "user123", role: "user" },
     
 ];
 
 export const THEATER_ADMINS = [
-    { id: "a2", name: "Haliya karem", email: "haliya@email.com", password: "haliya123", role: "admin", theaterId: "t2", createdDate: "2026-03-015" },
+    { id: "a1", name: "James Admin", email: "james@zeeShow.com", password: "admin123", role: "admin", theaterId: "t1", createdDate: "2026-03-01" },
+    { id: "a2", name: "Haliya karem", email: "haliya@gmail.com", password: "haliya123", role: "admin", theaterId: "t2", createdDate: "2026-03-015" },
     { id: "a3", name: "Adewole Adedotun", email: "dotun@email.com", password: "dotun123", role: "admin", theaterId: "t2", createdDate: "2026-03-06" },
-
 ]; 
 
 export const SUPER_ADMIN = {
-  email: "superadmin@ekwe.internal",
+  email: "superadmin@gmail.internal",
   password: "Super@Admin2026!",
   name: "Ekwe Emmanuel",
   role: "super_admin",
@@ -123,7 +123,7 @@ const BOOKED = new Set(["A3","B5","C2","C8","D4","E1","E7","F3","F9","G6","H2","
 
 export function generateSeats(theaterId = "t1") {
   const theater = THEATERS.find(t => t.id === theaterId) || THEATERS[0];
-  const rowLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").slice(0, theater.rows);
+  const rowLetters = "ABCDEFGHIJ".split("").slice(0, theater.rows);
   return rowLetters.map(row => ({
     row,
     seats: Array.from({ length: theater.seatsPerRow }, (_, i) => ({

@@ -4,7 +4,8 @@ import { AuthProvider, RequireUser, RequireAdmin } from "./auth/AuthContext";
 // Public
 import LandingPage from "./pages/LandingPage";
 import UserLogin   from "./auth/UserLogin";
-import AdminLogin  from "./auth/AdminLogin";   // ← no public link to this
+import AdminLogin  from "./auth/AdminLogin";
+import SuperAdminLogin from "./auth/SuperAdminLogin";
 
 // Protected apps
 import UserApp  from "./user/UserApp";
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/login"     element={<UserLogin />} />
 
         <Route path="/backstage" element={<AdminLogin />} />
+        <Route path="/root"      element={<SuperAdminLogin />} />
 
         <Route
           path="/*"

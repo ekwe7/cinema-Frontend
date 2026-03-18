@@ -1,5 +1,6 @@
 
 import { Link, useNavigate } from "react-router-dom";
+import { Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFilm, faChair, faCreditCard, faTicket,
@@ -7,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 
-const HERO_IMAGE   = "";
+const HERO_IMAGE   = "https://i.pinimg.com/1200x/8c/38/cc/8c38cc261a00473fc0affd6066713247.jpg";
 const MOVIE_IMAGES = [
     {
     id: 1,
@@ -108,21 +109,39 @@ export default function LandingPage() {
               </button>
             </div>
 
-            <div className="lp-stats">
+            {/* <div className="lp-stats">
               {[
                 { num: "50+",  label: "Movies" },
                 { num: "12",   label: "Theaters" },
                 { num: "10k+", label: "Happy Guests" },
-              ].map((s, i) => (
+              ].map((s, index) => (
                 <>
-                  {i > 0 && <div className="lp-stat-div" key={`div-${i}`} />}
+                  {index > 0 && <div className="lp-stat-div" key={`div-${index}`} />}
                   <div className="lp-stat" key={s.label}>
                     <span className="lp-stat-num">{s.num}</span>
                     <span className="lp-stat-label">{s.label}</span>
                   </div>
                 </>
               ))}
-            </div>
+            </div> */}
+
+
+            <div className="lp-stats">
+  {[
+    { num: "50+",  label: "Movies" },
+    { num: "12",   label: "Theaters" },
+    { num: "10k+", label: "Happy Guests" },
+  ].map((s, index) => (
+    <Fragment key={s.label}>
+      {index > 0 && <div className="lp-stat-div" />}
+      <div className="lp-stat">
+        <span className="lp-stat-num">{s.num}</span>
+        <span className="lp-stat-label">{s.label}</span>
+      </div>
+    </Fragment>
+  ))}
+</div>
+
           </div>
 
           <div className="lp-scroll-hint">
@@ -144,8 +163,8 @@ export default function LandingPage() {
           </div>
 
           <div className="lp-movies">
-            {MOVIE_IMAGES.map((m, i) => (
-              <div key={i} className="lp-movie-card" style={{ animationDelay: `${i * 0.1}s` }} onClick={() => navigate("/login")}>
+            {MOVIE_IMAGES.map((m, index) => (
+              <div key={index} className="lp-movie-card" style={{ animationDelay: `${index * 0.1}s` }} onClick={() => navigate("/login")}>
                 <div className="lp-movie-img-wrap">
                   {/* Replace src with your own image variable e.g. src={movie1} */}
                   <img src={m.src} alt={m.title} className="lp-movie-img" />
