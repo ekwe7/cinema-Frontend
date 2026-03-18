@@ -8,8 +8,8 @@ import AdminLogin  from "./auth/AdminLogin";
 import SuperAdminLogin from "./auth/SuperAdminLogin";
 
 // Protected apps
-import UserApp  from "./user/UserApp";
-// import AdminApp from "./admin/AdminApp";
+import UserApp   from "./user/UserApp";
+import AdminApp  from "./admin/AdminApp";
 
 export default function App() {
   return (
@@ -32,14 +32,14 @@ export default function App() {
         />
 
         {/* TODO: Create AdminApp component */}
-        {/* <Route
+        <Route
           path="/admin/*"
           element={
             <RequireAdmin>
               <AdminApp />
             </RequireAdmin>
           }
-        /> */}
+        />
 
         {/* Catch-all */}
         <Route path="*" element={<Navigate to="/" replace />} />

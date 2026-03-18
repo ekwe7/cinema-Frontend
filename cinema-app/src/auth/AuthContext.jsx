@@ -68,6 +68,8 @@ export function RequireUser({ children }) {
   return children;
 }
 
+
+
 export function RequireAdmin({ children }) {
   const { user } = useAuth();
   if (!user || user.role !== "admin") return <Navigate to="/backstage" replace />;

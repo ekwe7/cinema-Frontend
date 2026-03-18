@@ -111,8 +111,8 @@ export const THEATER_ADMINS = [
 ]; 
 
 export const SUPER_ADMIN = {
-  email: "superadmin@gmail.internal",
-  password: "Super@Admin2026!",
+  email: "ekwe@gmail.com",
+  password: "ekwe000!",
   name: "Ekwe Emmanuel",
   role: "super_admin",
 };
