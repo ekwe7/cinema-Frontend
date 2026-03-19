@@ -12,9 +12,8 @@ const HERO_IMAGE   = "https://i.pinimg.com/1200x/8c/38/cc/8c38cc261a00473fc0affd
 const MOVIE_IMAGES = [
     {
     id: 1,
-    image: "",
+    image: "//cinema-app/public/aw.jpeg",
     genre: "Sci-Fi",
-    title: "Movie Title",
     duration: "165 min",
     rating: "9.0",
   },

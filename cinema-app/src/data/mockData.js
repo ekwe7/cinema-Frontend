@@ -46,14 +46,13 @@ export const MOVIES = [
 },
 {
   id: "m6",
-  // title: "The Wedding Party",
+  title: "The Wedding Party",
   description: "A group of friends gather for a wedding in Lagos, only to find themselves caught in a web of lies, secrets, and unexpected twists that challenge their friendships and loyalties.",
   duration: "125 min",
   rating: 7,
   genre: "Comedy/Drama",
-  // poster: "💒",
-}
-,
+  poster: "💒",
+},
 {
   id: "m7",
   title: "Sardauna",

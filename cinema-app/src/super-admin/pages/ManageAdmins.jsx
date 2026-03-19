@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrash, faShield, faBuilding, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { THEATER_ADMINS, THEATERS } from "../../data/mockData";
 import Modal from "../../components/Modal";
 
-export default function ManageAdmins() {
-  const [admins, setAdmins] = useState(THEATER_ADMINS);
+export default function ManageAdmins({ admins, setAdmins, theaters }) {
   const [open, setOpen] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", password: "", theaterId: THEATERS[0]?.id ?? "" });
+  const [form, setForm] = useState({ name: "", email: "", password: "", theaterId: theaters[0]?.id ?? "" });
   const [error, setError] = useState("");
   const set = f => e => setForm({ ...form, [f]: e.target.value });
 
@@ -16,7 +14,7 @@ export default function ManageAdmins() {
     if (!form.name || !form.email || !form.password || !form.theaterId) { setError("All fields are required."); return; }
     if (admins.find(a => a.email === form.email)) { setError("Email already in use."); return; }
     setAdmins([...admins, { id: `a${Date.now()}`, ...form, role: "admin", createdAt: new Date().toISOString().split("T")[0] }]);
-    setForm({ name: "", email: "", password: "", theaterId: THEATERS[0]?.id ?? "" });
+    setForm({ name: "", email: "", password: "", theaterId: theaters[0]?.id ?? "" });
     setOpen(false);
   };
 
@@ -34,7 +32,7 @@ export default function ManageAdmins() {
 
       <div className="three-col">
         {admins.map(admin => {
-          const theater = THEATERS.find(t => t.id === admin.theaterId);
+          const theater = theaters.find(t => t.id === admin.theaterId);
           return (
             <div className="admin-card" key={admin.id}>
               <div className="admin-card-header">
@@ -70,12 +68,20 @@ export default function ManageAdmins() {
       </div>
 
       <Modal open={open} onClose={() => setOpen(false)} title="Create Theater Admin">
-        <div className="form-group"><label className="form-label">Full Name</label><input className="form-input" placeholder="Admin full name" value={form.name} onChange={set("name")} /></div>
-        <div className="form-group"><label className="form-label">Email</label><input className="form-input" type="email" placeholder="admin@cinebook.com" value={form.email} onChange={set("email")} /></div>
-        <div className="form-group"><label className="form-label">Password</label><input className="form-input" type="password" placeholder="Temporary password" value={form.password} onChange={set("password")} /></div>
+        <div className="form-group"><label className="form-label">Full Name</label>
+          <input className="form-input" placeholder="Admin full name" value={form.name} onChange={set("name")} />
+        </div>
+        <div className="form-group"><label className="form-label">Email</label>
+          <input className="form-input" type="email" placeholder="admin@cinebook.com" value={form.email} onChange={set("email")} />
+        </div>
+        <div className="form-group"><label className="form-label">Temporary Password</label>
+          <input className="form-input" type="password" placeholder="Set a temporary password" value={form.password} onChange={set("password")} />
+        </div>
         <div className="form-group"><label className="form-label">Assign Theater</label>
           <select className="form-input" value={form.theaterId} onChange={set("theaterId")}>
-            {THEATERS.map(t => <option key={t.id} value={t.id}>{t.name} — {t.city}</option>)}
+            {theaters.map(t => (
+              <option key={t.id} value={t.id}>{t.name} — {t.city}</option>
+            ))}
           </select>
         </div>
         {error && <div className="error-msg">{error}</div>}

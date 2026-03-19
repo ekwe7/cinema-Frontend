@@ -97,7 +97,7 @@ export default function UserLogin() {
         {mode === "login" && (
           <div style={S.hint}>
             <span style={{ color: "var(--text-muted)", fontSize: 12 }}>Demo: </span>
-            <code style={S.code}>alice@email.com / user123</code>
+            <code style={S.code}>dotun@gmail.com / user123</code>
           </div>
         )}
         <div style={{ textAlign: "center", marginTop: 20 }}>

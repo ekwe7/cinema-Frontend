@@ -1,8 +1,14 @@
+import { useState } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGauge, faBuilding, faUsers, faCalendar, faBookmark, faRightFromBracket, faCrown } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../auth/AuthContext";
 import { THEATERS, THEATER_ADMINS, BOOKINGS, MOVIES, SHOWS, MOCK_USERS } from "../data/mockData";
+
+// ── Import the FULL pages (not inline components) ─────────────────────────────
+import ManageTheaters from "./pages/ManageTheaters";
+import ManageAdmins   from "./pages/ManageAdmins";
+import SuperDashboard from "./pages/SuperDashboard";
 import "../styles/admin.css";
 
 const NAV = [
@@ -21,84 +27,7 @@ const TITLES = {
   "/super/bookings":  "Bookings",
 };
 
-function SuperDashboard() {
-  const revenue = BOOKINGS.filter(b => b.status === "Confirmed").reduce((s, b) => s + b.total, 0);
-  return (
-    <div className="page">
-      <div className="page-title">System Overview</div>
-      <div className="page-sub">All theaters · All time</div>
-      <div className="stats-grid">
-        {[
-          { label: "Theaters",  value: THEATERS.length },
-          { label: "Admins",    value: THEATER_ADMINS.length },
-          { label: "Users",     value: MOCK_USERS.length },
-          { label: "Bookings",  value: BOOKINGS.length },
-          { label: "Movies",    value: MOVIES.length },
-          { label: "Revenue",   value: `₦${revenue.toFixed(0)}` },
-        ].map(s => (
-          <div className="stat-card" key={s.label}>
-            <div className="stat-value">{s.value}</div>
-            <div className="stat-label">{s.label}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function TheatersPage() {
-  return (
-    <div className="page">
-      <div className="page-title">Theaters</div>
-      <div className="card">
-        <div className="table-wrap">
-          <table>
-            <thead><tr><th>ID</th><th>Name</th><th>City</th><th>Status</th></tr></thead>
-            <tbody>
-              {THEATERS.map(t => (
-                <tr key={t.id}>
-                  <td><span className="mono text-xs">{t.id}</span></td>
-                  <td className="font-semibold">{t.name}</td>
-                  <td>{t.city}</td>
-                  <td><span className={`badge ${t.status === "Active" ? "badge-green" : "badge-yellow"}`}>{t.status}</span></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function AdminsPage() {
-  return (
-    <div className="page">
-      <div className="page-title">Theater Admins</div>
-      <div className="card">
-        <div className="table-wrap">
-          <table>
-            <thead><tr><th>Name</th><th>Email</th><th>Theater</th><th>Created</th></tr></thead>
-            <tbody>
-              {THEATER_ADMINS.map(a => {
-                const theater = THEATERS.find(t => t.id === a.theaterId);
-                return (
-                  <tr key={a.id}>
-                    <td className="font-semibold">{a.name}</td>
-                    <td>{a.email}</td>
-                    <td>{theater?.name ?? a.theaterId}</td>
-                    <td>{a.createdDate}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  );
-}
-
+// ── Keep these simple inline pages for Shows and Bookings ─────────────────────
 function ShowsPage() {
   return (
     <div className="page">
@@ -106,10 +35,12 @@ function ShowsPage() {
       <div className="card">
         <div className="table-wrap">
           <table>
-            <thead><tr><th>ID</th><th>Movie</th><th>Theater</th><th>Date</th><th>Time</th><th>Price</th></tr></thead>
+            <thead>
+              <tr><th>ID</th><th>Movie</th><th>Theater</th><th>Date</th><th>Time</th><th>Price</th></tr>
+            </thead>
             <tbody>
               {SHOWS.map(s => {
-                const movie = MOVIES.find(m => m.id === s.movieId);
+                const movie   = MOVIES.find(m => m.id === s.movieId);
                 const theater = THEATERS.find(t => t.id === s.theaterId);
                 return (
                   <tr key={s.id}>
@@ -118,7 +49,7 @@ function ShowsPage() {
                     <td>{theater?.name}</td>
                     <td>{s.date}</td>
                     <td>{s.startTime}</td>
-                    <td>₦{s.price}</td>
+                    <td className="text-gold font-bold">₦{s.price}</td>
                   </tr>
                 );
               })}
@@ -137,17 +68,23 @@ function BookingsPage() {
       <div className="card">
         <div className="table-wrap">
           <table>
-            <thead><tr><th>ID</th><th>Movie</th><th>Seats</th><th>Total</th><th>Status</th></tr></thead>
+            <thead>
+              <tr><th>ID</th><th>Movie</th><th>Seats</th><th>Total</th><th>Status</th></tr>
+            </thead>
             <tbody>
               {BOOKINGS.map(b => {
                 const movie = MOVIES.find(m => m.id === b.movieId);
                 return (
                   <tr key={b.id}>
-                    <td><span className="mono text-xs">{b.id}</span></td>
+                    <td><span className="mono text-xs text-gold">{b.id}</span></td>
                     <td className="font-semibold">{movie?.title}</td>
                     <td>{b.seats.join(", ")}</td>
-                    <td>₦{b.total}</td>
-                    <td><span className={`badge ${b.status === "Confirmed" ? "badge-green" : b.status === "Pending" ? "badge-yellow" : "badge-red"}`}>{b.status}</span></td>
+                    <td className="font-bold">₦{b.total}</td>
+                    <td>
+                      <span className={`badge ${b.status === "Confirmed" ? "badge-green" : b.status === "Pending" ? "badge-yellow" : "badge-red"}`}>
+                        {b.status}
+                      </span>
+                    </td>
                   </tr>
                 );
               })}
@@ -159,10 +96,16 @@ function BookingsPage() {
   );
 }
 
+// ── Main App ──────────────────────────────────────────────────────────────────
 export default function SuperAdminApp() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
+  // ── Shared state — this is what was missing ───────────────────────────────
+  const [theaters, setTheaters] = useState(THEATERS);
+  const [admins, setAdmins]     = useState(THEATER_ADMINS);
+
   const title = Object.entries(TITLES).find(([k]) => location.pathname.startsWith(k))?.[1] ?? "Super Admin";
 
   return (
@@ -170,17 +113,20 @@ export default function SuperAdminApp() {
       <aside className="sidebar">
         <div className="sidebar-logo">
           <a href="/" className="logo-wrap">
-            <div className="logo-icon" style={{ color: "#e8c97a" }}><FontAwesomeIcon icon={faCrown} /></div>
+            <div className="logo-icon" style={{ color: "#e8c97a" }}>
+              <FontAwesomeIcon icon={faCrown} />
+            </div>
             <span className="logo-text">ZeeShow</span>
             <span className="logo-badge" style={{ background: "rgba(232,201,122,0.15)", color: "#e8c97a" }}>Root</span>
           </a>
         </div>
+
         <nav className="sidebar-nav">
           <div className="nav-section-label">System</div>
           {NAV.map(item => (
             <button
               key={item.path}
-              className={`nav-item${location.pathname.startsWith(item.path) ? " active-purple" : ""}`}
+              className={`nav-item${location.pathname.startsWith(item.path) ? " active" : ""}`}
               onClick={() => navigate(item.path)}
             >
               <span className="nav-icon"><FontAwesomeIcon icon={item.icon} /></span>
@@ -188,10 +134,11 @@ export default function SuperAdminApp() {
             </button>
           ))}
         </nav>
+
         <div className="sidebar-footer">
           <div className="user-info">
             <div className="user-name">{user?.name}</div>
-            <div className="user-role">Super Admin</div>
+            <div className="user-role" style={{ color: "#e8c97a" }}>Super Admin</div>
           </div>
           <button className="btn btn-ghost btn-sm btn-full" onClick={() => { logout(); navigate("/"); }}>
             <FontAwesomeIcon icon={faRightFromBracket} /> Sign Out
@@ -206,16 +153,20 @@ export default function SuperAdminApp() {
             <span className="badge" style={{ background: "rgba(232,201,122,0.15)", color: "#e8c97a" }}>
               <FontAwesomeIcon icon={faCrown} /> Super Admin
             </span>
-            <div className="avatar" style={{ background: "rgba(232,201,122,0.2)", color: "#e8c97a" }}>{user?.name?.[0]?.toUpperCase()}</div>
+            <div className="avatar" style={{ background: "rgba(232,201,122,0.2)", color: "#e8c97a" }}>
+              {user?.name?.[0]?.toUpperCase()}
+            </div>
           </div>
         </header>
+
         <Routes>
-          <Route path="/dashboard" element={<SuperDashboard />} />
-          <Route path="/theaters"  element={<TheatersPage />} />
-          <Route path="/admins"    element={<AdminsPage />} />
+          {/* ── Pass shared state as props ── */}
+          <Route path="/dashboard" element={<SuperDashboard theaters={theaters} admins={admins} />} />
+          <Route path="/theaters"  element={<ManageTheaters theaters={theaters} setTheaters={setTheaters} />} />
+          <Route path="/admins"    element={<ManageAdmins   admins={admins} setAdmins={setAdmins} theaters={theaters} />} />
           <Route path="/shows"     element={<ShowsPage />} />
           <Route path="/bookings"  element={<BookingsPage />} />
-          <Route path="*"          element={<SuperDashboard />} />
+          <Route path="*"          element={<SuperDashboard theaters={theaters} admins={admins} />} />
         </Routes>
       </div>
     </div>
