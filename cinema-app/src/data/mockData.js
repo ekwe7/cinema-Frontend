@@ -68,12 +68,12 @@ export const MOVIES = [
 ];
 
 export const THEATERS = [
-    {id:"t1", name:"Lagos Movie Theater", city:"Lagos Island, Lagos", status: "Active", row: 10, seatsPerRow: 10},
-    {id:"t2", name:"Kano Cinema Hall", city:"Kano City, Kano", status: "Active", row: 7, seatsPerRow: 10},
-    {id:"t3", name:"Ibadan Grand Theater", city:"Ibadan, Oyo", status: "Maintenance", row: 7, seatsPerRow: 6},
-    {id:"t4", name:"Enugu Multiplex", city:"Enugu City, Enugu", status: "Active", row: 7, seatsPerRow: 10},
-    {id:"t5", name:"Port Harcourt Plaza", city:"Port Harcourt, Rivers", status: "Active", row: 9, seatsPerRow: 8},
-    { id: "t1", name: "CineMax Downtown",  city: "New York",    status: "Active",      rows: 8, seatsPerRow: 10 },
+    {id:"t1", name:"Lagos Movie Theater", city:"Lagos Island, Lagos", status: "Active", rows: 10, seatsPerRow: 10},
+    {id:"t2", name:"Kano Cinema Hall", city:"Kano City, Kano", status: "Active", rows: 7, seatsPerRow: 10},
+    {id:"t3", name:"Ibadan Grand Theater", city:"Ibadan, Oyo", status: "Maintenance", rows: 7, seatsPerRow: 6},
+    {id:"t4", name:"Enugu Multiplex", city:"Enugu City, Enugu", status: "Active", rows: 7, seatsPerRow: 10},
+    {id:"t5", name:"Port Harcourt Plaza", city:"Port Harcourt, Rivers", status: "Active", rows: 9, seatsPerRow: 8},
+    {id:"t6", name:"Benin City Cinema", city:"Benin City, Edo", status: "Active", rows: 8, seatsPerRow: 7},
 ];
 
 export const SHOWS = [
@@ -98,7 +98,7 @@ export const BOOKINGS = [
 ];
 
 export const MOCK_USERS = [
-    { id: "u1", name: "Ekwe Dotun", email: "dotun@gmail.com", password: "user123", role: "user" },
+    { id: "u1", name: "Ekwe Dotun", email: "kate@gmail.com", password: "user123", role: "user" },
     { id: "u4", name: "Ejiofor Nelson", email: "nelson@gmail.com", password: "user123", role: "user" },
     { id: "u5", name: "Dotun Favour", email: "favour@gmail.com", password: "user123", role: "user" },
     
@@ -107,7 +107,7 @@ export const MOCK_USERS = [
 export const THEATER_ADMINS = [
     { id: "a1", name: "James Admin", email: "james@zeeShow.com", password: "admin123", role: "admin", theaterId: "t1", createdDate: "2026-03-01" },
     { id: "a2", name: "Haliya karem", email: "haliya@gmail.com", password: "haliya123", role: "admin", theaterId: "t2", createdDate: "2026-03-015" },
-    { id: "a3", name: "Adewole Adedotun", email: "dotun@email.com", password: "dotun123", role: "admin", theaterId: "t2", createdDate: "2026-03-06" },
+    { id: "a3", name: "Adewole Adedotun", email: "dotun@gmail.com", password: "dotun123", role: "admin", theaterId: "t2", createdDate: "2026-03-06" },
 ]; 
 
 export const SUPER_ADMIN = {
@@ -124,12 +124,12 @@ const BOOKED = new Set(["A3","B5","C2","C8","D4","E1","E7","F3","F9","G6","H2","
 export function generateSeats(theaterId = "t1") {
   const theater = THEATERS.find(t => t.id === theaterId) || THEATERS[0];
   const rowLetters = "ABCDEFGHIJ".split("").slice(0, theater.rows);
-  return rowLetters.map(row => ({
-    row,
+  return rowLetters.map(rows => ({
+    row: rows,
     seats: Array.from({ length: theater.seatsPerRow }, (_, i) => ({
-      id: `${row}${i + 1}`,
+      id: `${rows}${i + 1}`,
       number: i + 1,
-      status: BOOKED.has(`${row}${i + 1}`) ? "booked" : "available",
+      status: BOOKED.has(`${rows}${i + 1}`) ? "booked" : "available",
     })),
   }));
 }

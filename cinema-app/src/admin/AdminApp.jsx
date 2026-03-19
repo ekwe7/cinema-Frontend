@@ -6,6 +6,7 @@ import { THEATERS } from "../data/mockData";
 
 import Dashboard from "./pages/DashBoard";
 import SeatManager from "./pages/SeatManager";
+import MoviesAdmin from "./pages/MoviesAdmin";
 import ShowsAdmin from "./pages/ShowsAdmin";
 import BookingsAdmin from "./pages/BookingsAdmin";
 import "../styles/admin.css";
