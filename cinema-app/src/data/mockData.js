@@ -96,17 +96,13 @@ export const BOOKINGS = [
     { id: "BK1027", userId: "u2", movieId: "m6", showId: "s6", theaterId: "t7", seats: ["G1", "G2"], total: 32.0, status: "Confirmed", date: "2026-02-20" }
 ];
 
-export const MOCK_USERS = [
-    { id: "u1", name: "Ekwe Dotun", email: "kate@gmail.com", password: "user123", role: "user" },
-    { id: "u4", name: "Ejiofor Nelson", email: "nelson@gmail.com", password: "user123", role: "user" },
-    { id: "u5", name: "Dotun Favour", email: "favour@gmail.com", password: "user123", role: "user" },
-    
-];
-
 export const THEATER_ADMINS = [
-    { id: "a1", name: "James Admin", email: "james@zeeShow.com", password: "admin123", role: "admin", theaterId: "t1", createdDate: "2026-03-01" },
-    { id: "a2", name: "Haliya karem", email: "haliya@gmail.com", password: "haliya123", role: "admin", theaterId: "t2", createdDate: "2026-03-015" },
-    { id: "a3", name: "Adewole Adedotun", email: "dotun@gmail.com", password: "dotun123", role: "admin", theaterId: "t2", createdDate: "2026-03-06" },
+    { id: "a1", name: "James Admin",      email: "james@zeeShow.com",  password: "admin123",  role: "admin", theaterId: "t1", createdDate: "2026-03-01" },
+    { id: "a2", name: "Haliya Karem",     email: "haliya@zeeShow.com",   password: "haliya123", role: "admin", theaterId: "t2", createdDate: "2026-03-05" },
+    { id: "a3", name: "Adewole Adedotun", email: "dotun@zeeShow.com",    password: "dotun123",  role: "admin", theaterId: "t3", createdDate: "2026-03-06" },
+    { id: "a4", name: "Chukwuemeka Obi",  email: "emeka@zeeShow.com",  password: "emeka123",  role: "admin", theaterId: "t4", createdDate: "2026-03-07" },
+    { id: "a5", name: "Tunde Fashola",    email: "tunde@zeeShow.com",  password: "tunde123",  role: "admin", theaterId: "t5", createdDate: "2026-03-08" },
+    { id: "a6", name: "Amaka Eze",        email: "amaka@zeeShow.com",  password: "amaka123",  role: "admin", theaterId: "t6", createdDate: "2026-03-09" },
 ]; 
 
 export const SUPER_ADMIN = {
@@ -125,10 +121,10 @@ export function generateSeats(theaterId = "t1") {
   const rowLetters = "ABCDEFGHIJ".split("").slice(0, theater.rows);
   return rowLetters.map(rows => ({
     row: rows,
-    seats: Array.from({ length: theater.seatsPerRow }, (_, i) => ({
-      id: `${rows}${i + 1}`,
-      number: i + 1,
-      status: BOOKED.has(`${rows}${i + 1}`) ? "booked" : "available",
+    seats: Array.from({ length: theater.seatsPerRow }, (_, index) => ({
+      id: `${rows}${index + 1}`,
+      number: index + 1,
+      status: BOOKED.has(`${rows}${index + 1}`) ? "booked" : "available",
     })),
   }));
 }

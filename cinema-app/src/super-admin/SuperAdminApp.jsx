@@ -3,7 +3,7 @@ import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGauge, faBuilding, faUsers, faCalendar, faBookmark, faRightFromBracket, faCrown } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../auth/AuthContext";
-import { THEATERS, THEATER_ADMINS, BOOKINGS, MOVIES, SHOWS, MOCK_USERS } from "../data/mockData";
+import { THEATERS, THEATER_ADMINS, BOOKINGS, MOVIES, SHOWS } from "../data/mockData";
 
 // ── Import the FULL pages (not inline components) ─────────────────────────────
 import ManageTheaters from "./pages/ManageTheaters";

@@ -77,7 +77,7 @@ export default function BookingFlow({ bookingContext, setBookingContext }) {
 
       {step === 1 && (
         <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", gap: 24 }}>
-          <div className="card"><SeatMap selectedSeats={seats} onToggle={toggleSeat} /></div>
+          <div className="card"><SeatMap selectedSeats={seats} onToggle={toggleSeat} theaterId={show?.theaterId} /></div>
           <BookingSummary movie={movie} show={show} seats={seats} onBack={() => setStep(0)} onNext={() => navigate("/payment")} />
         </div>
       )}

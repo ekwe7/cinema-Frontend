@@ -1,13 +1,12 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider, RequireUser, RequireAdmin, RequireSuperAdmin } from "./auth/AuthContext";
+import { AuthProvider, RequireAdmin, RequireSuperAdmin } from "./auth/AuthContext";
 
 // Public
 import LandingPage     from "./pages/LandingPage";
-import UserLogin       from "./auth/UserLogin";
 import AdminLogin      from "./auth/AdminLogin";
 import SuperAdminLogin from "./auth/SuperAdminLogin";
 
-// Protected apps
+// Apps
 import UserApp       from "./user/UserApp";
 import AdminApp      from "./admin/AdminApp";
 import SuperAdminApp from "./super-admin/SuperAdminApp";
@@ -16,10 +15,7 @@ export default function App() {
   return (
     <AuthProvider>
       <Routes>
-
         <Route path="/"          element={<LandingPage />} />
-        <Route path="/login"     element={<UserLogin />} />
-
         <Route path="/backstage" element={<AdminLogin />} />
         <Route path="/root"      element={<SuperAdminLogin />} />
 
@@ -41,16 +37,12 @@ export default function App() {
           }
         />
 
-        <Route
-          path="/*"
-          element={
-            <RequireUser>
-              <UserApp />
-            </RequireUser>
-          }
-        />
+        {/* Guest user routes — no auth required */}
+        <Route path="/browse"  element={<UserApp />} />
+        <Route path="/book"    element={<UserApp />} />
+        <Route path="/payment" element={<UserApp />} />
+        <Route path="/success" element={<UserApp />} />
 
-        {/* Catch-all */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AuthProvider>

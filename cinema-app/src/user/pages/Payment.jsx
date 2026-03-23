@@ -7,11 +7,10 @@ import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
 import { faLock, faArrowLeft, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 // import { useAuth } from "../../auth/AuthContext";
 
-export default function Payment({ bookingContext }) {
+export default function Payment({ bookingContext, setBookingContext }) {
   const navigate = useNavigate();
-  // const { user } = useAuth();
   const [method, setMethod] = useState("card");
-  const [form, setForm] = useState({ name: "", number: "", expiry: "", cvv: "" });
+  const [form, setForm] = useState({ name: "", number: "", expiry: "", cvv: "", email: "" });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -24,12 +23,14 @@ export default function Payment({ bookingContext }) {
   const formatCard = v => v.replace(/\D/g, "").replace(/(.{4})/g, "$1 ").trim().slice(0, 19);
 
   const validate = () => {
-    if (method !== "card") return true;
     const e = {};
-    if (!form.name.trim()) e.name = "Name is required";
-    if (form.number.replace(/\s/g, "").length < 16) e.number = "Enter a valid 16-digit card number";
-    if (!form.expiry.match(/^\d{2}\/\d{2}$/)) e.expiry = "Use MM/YY format";
-    if (form.cvv.length < 3) e.cvv = "Enter a valid CVV";
+    if (!form.email.trim() || !form.email.includes("@")) e.email = "Enter a valid email address";
+    if (method === "card") {
+      if (!form.name.trim()) e.name = "Name is required";
+      if (form.number.replace(/\s/g, "").length < 16) e.number = "Enter a valid 16-digit card number";
+      if (!form.expiry.match(/^\d{2}\/\d{2}$/)) e.expiry = "Use MM/YY format";
+      if (form.cvv.length < 3) e.cvv = "Enter a valid CVV";
+    }
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -37,6 +38,7 @@ export default function Payment({ bookingContext }) {
   const handlePay = () => {
     if (!validate()) return;
     setLoading(true);
+    setBookingContext(prev => ({ ...prev, guestEmail: form.email }));
     setTimeout(() => { navigate("/success"); }, 1800);
   };
 
@@ -57,6 +59,11 @@ export default function Payment({ bookingContext }) {
       <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 24 }}>
         <div className="card">
           <div className="section-title mb-4">Payment Method</div>
+          <div className="form-group">
+            <label className="form-label">Email address — receipt will be sent here</label>
+            <input className="form-input" type="email" placeholder="you@email.com" value={form.email} onChange={set("email")} />
+            {errors.email && <div className="text-danger text-sm mt-2">{errors.email}</div>}
+          </div>
           <div className="payment-methods">
             {methods.map(m => (
               <div key={m.id} className={`pay-method${method === m.id ? " active" : ""}`} onClick={() => setMethod(m.id)}>

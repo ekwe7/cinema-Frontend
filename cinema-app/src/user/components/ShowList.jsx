@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faCalendar } from "@fortawesome/free-solid-svg-icons";
 import { THEATERS, generateSeats } from "../../data/mockData";
@@ -36,28 +37,26 @@ export function ShowList({ shows, selected, onSelect }) {
 }
 
 // SeatMap
-const SEAT_DATA = generateSeats();
-
-export function SeatMap({ selectedSeats, onToggle }) {
+export function SeatMap({ selectedSeats, onToggle, theaterId }) {
+  const seatData = generateSeats(theaterId);
   return (
     <div className="seat-map-wrap">
       <div className="seat-screen">Screen</div>
       <div className="seat-rows">
-        {SEAT_DATA.map(row => (
+        {seatData.map(row => (
           <div className="seat-row" key={row.row}>
             <div className="row-label">{row.row}</div>
             {row.seats.map((seat, i) => (
-              <>
-                {i === 5 && <div className="seat-gap" key={`gap-${row.row}`} />}
+              <Fragment key={seat.id}>
+                {i === 5 && <div className="seat-gap" />}
                 <div
-                  key={seat.id}
                   className={`seat ${selectedSeats.includes(seat.id) ? "selected" : seat.status}`}
                   onClick={() => onToggle(seat)}
                   title={seat.id}
                 >
                   {seat.number}
                 </div>
-              </>
+              </Fragment>
             ))}
           </div>
         ))}

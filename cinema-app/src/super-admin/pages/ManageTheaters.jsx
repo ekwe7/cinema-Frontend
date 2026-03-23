@@ -1,105 +1,94 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTrash, faShield, faBuilding, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTrash, faBuilding, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import Modal from "../../components/Modal";
 
-// ← No longer imports THEATER_ADMINS or THEATERS from mockData
-//   They come in as props from SuperAdminApp
+const blank = { name: "", city: "", status: "Active", rows: 8, seatsPerRow: 10 };
 
-export default function ManageAdmins({ admins, setAdmins, theaters }) {
+export default function ManageTheaters({ theaters, setTheaters }) {
   const [open, setOpen] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", password: "", theaterId: theaters[0]?.id ?? "" });
+  const [form, setForm] = useState(blank);
   const [error, setError] = useState("");
   const set = f => e => setForm({ ...form, [f]: e.target.value });
 
   const handleAdd = () => {
     setError("");
-    if (!form.name || !form.email || !form.password || !form.theaterId) {
-      setError("All fields are required."); return;
-    }
-    if (admins.find(a => a.email === form.email)) {
-      setError("Email already in use."); return;
-    }
-    setAdmins([...admins, {
-      id: `a${Date.now()}`,
-      ...form,
-      role: "admin",
-      createdAt: new Date().toISOString().split("T")[0],
-    }]);
-    setForm({ name: "", email: "", password: "", theaterId: theaters[0]?.id ?? "" });
+    if (!form.name || !form.city) { setError("Name and city are required."); return; }
+    setTheaters([...theaters, { id: `t${Date.now()}`, ...form, rows: parseInt(form.rows), seatsPerRow: parseInt(form.seatsPerRow) }]);
+    setForm(blank);
     setOpen(false);
   };
 
   return (
     <div className="page">
-      <div className="page-title">Manage Admins</div>
-      <div className="page-sub">Create theater admins and assign them to locations</div>
+      <div className="page-title">Theaters</div>
+      <div className="page-sub">Manage all cinema locations</div>
 
       <div className="section-header mb-4">
         <div />
         <button className="btn btn-gold" onClick={() => setOpen(true)}>
-          <FontAwesomeIcon icon={faPlus} /> Create Admin
+          <FontAwesomeIcon icon={faPlus} /> Add Theater
         </button>
       </div>
 
       <div className="three-col">
-        {admins.map(admin => {
-          const theater = theaters.find(t => t.id === admin.theaterId); // ← uses prop
-          return (
-            <div className="admin-card" key={admin.id}>
-              <div className="admin-card-header">
-                <div className="admin-avatar"><FontAwesomeIcon icon={faShield} /></div>
-                <div>
-                  <div className="admin-name">{admin.name}</div>
-                  <div className="admin-theater">
-                    <FontAwesomeIcon icon={faBuilding} style={{ fontSize: 10 }} />
-                    {theater?.name ?? "Unassigned"}
-                  </div>
+        {theaters.map(t => (
+          <div className="admin-card" key={t.id}>
+            <div className="admin-card-header">
+              <div className="admin-avatar"><FontAwesomeIcon icon={faBuilding} /></div>
+              <div>
+                <div className="admin-name">{t.name}</div>
+                <div className="admin-theater">
+                  <FontAwesomeIcon icon={faLocationDot} style={{ fontSize: 10 }} /> {t.city}
                 </div>
               </div>
-              <div style={{ fontSize: 13, color: "var(--text-secondary)", display: "flex", alignItems: "center", gap: 6 }}>
-                <FontAwesomeIcon icon={faEnvelope} style={{ fontSize: 11 }} />
-                {admin.email}
-              </div>
-              <div className="admin-card-footer">
-                <span className="text-xs text-secondary">Created {admin.createdAt}</span>
-                <button className="btn btn-danger btn-sm" onClick={() => setAdmins(admins.filter(a => a.id !== admin.id))}>
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-              </div>
             </div>
-          );
-        })}
+            <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+              <span className={`badge ${t.status === "Active" ? "badge-green" : "badge-yellow"}`}>{t.status}</span>
+              <span className="badge badge-blue">{t.rows} rows × {t.seatsPerRow} seats</span>
+            </div>
+            <div className="admin-card-footer">
+              <span className="text-xs text-secondary">ID: {t.id}</span>
+              <button className="btn btn-danger btn-sm" onClick={() => setTheaters(theaters.filter(x => x.id !== t.id))}>
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
+            </div>
+          </div>
+        ))}
 
-        {admins.length === 0 && (
+        {theaters.length === 0 && (
           <div className="empty-state" style={{ gridColumn: "1/-1" }}>
-            <div className="empty-icon"><FontAwesomeIcon icon={faShield} /></div>
-            <p>No admins created yet.</p>
+            <div className="empty-icon"><FontAwesomeIcon icon={faBuilding} /></div>
+            <p>No theaters added yet.</p>
           </div>
         )}
       </div>
 
-      <Modal open={open} onClose={() => setOpen(false)} title="Create Theater Admin">
-        <div className="form-group"><label className="form-label">Full Name</label>
-          <input className="form-input" placeholder="Admin full name" value={form.name} onChange={set("name")} />
+      <Modal open={open} onClose={() => setOpen(false)} title="Add Theater">
+        <div className="form-group"><label className="form-label">Theater Name</label>
+          <input className="form-input" placeholder="e.g. Abuja Grand Cinema" value={form.name} onChange={set("name")} />
         </div>
-        <div className="form-group"><label className="form-label">Email</label>
-          <input className="form-input" type="email" placeholder="admin@cinebook.com" value={form.email} onChange={set("email")} />
+        <div className="form-group"><label className="form-label">City</label>
+          <input className="form-input" placeholder="e.g. Abuja, FCT" value={form.city} onChange={set("city")} />
         </div>
-        <div className="form-group"><label className="form-label">Temporary Password</label>
-          <input className="form-input" type="password" placeholder="Set a temporary password" value={form.password} onChange={set("password")} />
+        <div className="input-row">
+          <div className="form-group"><label className="form-label">Rows</label>
+            <input className="form-input" type="number" min={1} max={26} value={form.rows} onChange={set("rows")} />
+          </div>
+          <div className="form-group"><label className="form-label">Seats per Row</label>
+            <input className="form-input" type="number" min={1} max={20} value={form.seatsPerRow} onChange={set("seatsPerRow")} />
+          </div>
         </div>
-        <div className="form-group"><label className="form-label">Assign Theater</label>
-          <select className="form-input" value={form.theaterId} onChange={set("theaterId")}>
-            {/* ← This now shows newly created theaters too */}
-            {theaters.map(t => (
-              <option key={t.id} value={t.id}>{t.name} — {t.city}</option>
-            ))}
+        <div className="form-group"><label className="form-label">Status</label>
+          <select className="form-input" value={form.status} onChange={set("status")}>
+            <option>Active</option>
+            <option>Maintenance</option>
+            <option>Inactive</option>
           </select>
         </div>
         {error && <div className="error-msg">{error}</div>}
         <div className="flex gap-2 mt-4">
-          <button className="btn btn-gold btn-full" onClick={handleAdd}>Create Admin</button>
+          <button className="btn btn-gold btn-full" onClick={handleAdd}>Add Theater</button>
           <button className="btn btn-ghost" onClick={() => setOpen(false)}>Cancel</button>
         </div>
       </Modal>

@@ -2,15 +2,13 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck, faFilm, faReceipt, faTicket } from "@fortawesome/free-solid-svg-icons";
-import { useAuth } from "../../auth/AuthContext";
 import ReceiptModal from "../../components/ReceiptModal";
 
 export default function BookingSuccess({ bookingContext }) {
   const navigate = useNavigate();
-  const { user } = useAuth();
   const [receiptOpen, setReceiptOpen] = useState(false);
   const bookingId = useRef(`BK${Math.floor(Math.random() * 9000 + 1000)}`);
-  const { movie, show, seats, total } = bookingContext;
+  const { movie, show, seats, total, guestEmail } = bookingContext;
 
   useEffect(() => { if (!movie) navigate("/browse"); }, []);
   if (!movie) return null;
@@ -80,7 +78,7 @@ export default function BookingSuccess({ bookingContext }) {
         open={receiptOpen}
         onClose={() => setReceiptOpen(false)}
         bookingId={bookingId.current}
-        userEmail={user?.email}
+        userEmail={guestEmail}
       />
     </div>
   );

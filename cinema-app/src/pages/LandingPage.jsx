@@ -8,41 +8,40 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 
-const HERO_IMAGE   = "https://i.pinimg.com/1200x/8c/38/cc/8c38cc261a00473fc0affd6066713247.jpg";
+const HERO_IMAGE = "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1400&q=80";
 const MOVIE_IMAGES = [
-    {
+  {
     id: 1,
-    image: "//cinema-app/public/aw.jpeg",
-    genre: "Sci-Fi",
-    duration: "165 min",
+    image: "/aw.jpeg",
+    title: "Ghost",
+    genre: "Fantasy/Epic",
+    duration: "150 min",
     rating: "9.0",
   },
   {
     id: 2,
-    image: "",
-    genre: "Thriller",
-    title: "Movie Title",
-    duration: "128 min",
-    rating: "8.2",
+    image: "/kb_.jpeg",
+    title: "King of Boys",
+    genre: "Crime/Thriller",
+    duration: "140 min",
+    rating: "9.0",
   },
   {
     id: 3,
-    image: "",
-    genre: "Action",
-    title: "Movie Title",
-    duration: "142 min",
-    rating: "8.5",
+    image: "/gl.jpeg",
+    title: "Gangs of Lagos",
+    genre: "Action/Drama",
+    duration: "120 min",
+    rating: "8.2",
   },
   {
     id: 4,
-    image: "",
-    genre: "Drama",
-    title: "Movie Title",
-    duration: "156 min",
-    rating: "9.1",
+    image: "/Brotherhood (2022 Movie) - One Eye Symbolism [Illuminati].jpeg",
+    title: "Brotherhood",
+    genre: "Action/Thriller",
+    duration: "135 min",
+    rating: "8.5",
   },
-  
-  
 ];
 
 export default function LandingPage() {
@@ -68,8 +67,8 @@ export default function LandingPage() {
           </div>
 
           <div className="lp-nav-right">
-            <Link to="/login" className="lp-nav-signin">Sign In</Link>
-            <Link to="/login" className="lp-nav-cta">
+            <Link to="/browse" className="lp-nav-signin">Browse Movies</Link>
+            <Link to="/browse" className="lp-nav-cta">
               Get Started <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: 12 }} />
             </Link>
           </div>
@@ -81,6 +80,7 @@ export default function LandingPage() {
           <div className="lp-hero-overlay" />
 
           <div className="lp-hero-content">
+
             <div className="lp-pill">
               <span className="lp-pill-dot" />
               <FontAwesomeIcon icon={faTicket} style={{ fontSize: 12 }} />
@@ -98,12 +98,12 @@ export default function LandingPage() {
             </p>
 
             <div className="lp-hero-btns">
-              <button className="lp-btn-primary" onClick={() => navigate("/login")}>
+              <button className="lp-btn-primary" onClick={() => navigate("/browse")}>
                 <FontAwesomeIcon icon={faPlay} />
                 Browse Movies
               </button>
-              <button className="lp-btn-ghost" onClick={() => navigate("/login")}>
-                My Bookings
+              <button className="lp-btn-ghost" onClick={() => navigate("/browse")}>
+                Book Now
                 <FontAwesomeIcon icon={faChevronRight} style={{ fontSize: 12 }} />
               </button>
             </div>
@@ -143,6 +143,10 @@ export default function LandingPage() {
 
           </div>
 
+          <div className="lp-hero-image">
+            <img src="/aw.jpeg" alt="Now Showing" />
+          </div>
+
           <div className="lp-scroll-hint">
             <div className="lp-scroll-line" />
             <span>Scroll</span>
@@ -156,17 +160,16 @@ export default function LandingPage() {
               <div className="lp-label">On Screen Now</div>
               <h2 className="lp-section-title">Featured Films</h2>
             </div>
-            <Link to="/login" className="lp-see-all">
+            <Link to="/browse" className="lp-see-all">
               View all films <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: 12 }} />
             </Link>
           </div>
 
           <div className="lp-movies">
             {MOVIE_IMAGES.map((m, index) => (
-              <div key={index} className="lp-movie-card" style={{ animationDelay: `${index * 0.1}s` }} onClick={() => navigate("/login")}>
+              <div key={index} className="lp-movie-card" style={{ animationDelay: `${index * 0.1}s` }} onClick={() => navigate("/browse")}>
                 <div className="lp-movie-img-wrap">
-                  {/* Replace src with your own image variable e.g. src={movie1} */}
-                  <img src={m.src} alt={m.title} className="lp-movie-img" />
+                  <img src={m.image} alt={m.title} className="lp-movie-img" />
                   <div className="lp-movie-grad" />
                   <span className="lp-movie-genre">{m.genre}</span>
                   <div className="lp-movie-book-btn">
@@ -223,9 +226,9 @@ export default function LandingPage() {
             <div className="lp-label" style={{ color: "rgba(232,201,122,0.6)", textAlign: "center" }}>Start Today</div>
             <h2 className="lp-cta-title">Ready for your next movie night?</h2>
             <p className="lp-cta-sub">Join thousands of cinema lovers who book smarter with ZeeShow.</p>
-            <button className="lp-btn-primary" onClick={() => navigate("/login")}>
+            <button className="lp-btn-primary" onClick={() => navigate("/browse")}>
               <FontAwesomeIcon icon={faTicket} />
-              Create Free Account
+              Book Your Tickets
             </button>
           </div>
         </section>
@@ -241,7 +244,7 @@ export default function LandingPage() {
           </div>
           <div className="lp-footer-line" />
           <div className="lp-footer-bottom">
-            <span className="lp-footer-copy">© 2026 CineBook. All rights reserved.</span>
+            <span className="lp-footer-copy">© 2026 ZeeShow. All rights reserved.</span>
             <div className="lp-footer-links">
               {["About","Privacy","Terms","Contact"].map(l => <span key={l}>{l}</span>)}
             </div>
@@ -273,10 +276,12 @@ const css = `
   .lp-nav-cta:hover { background:#661900; transform:translateY(-1px); box-shadow:0 4px 16px rgba(136,33,0,0.3); }
 
   /* Hero */
-  .lp-hero { position:relative; min-height:100vh; display:flex; align-items:center; padding:120px 60px 80px; overflow:hidden; background:linear-gradient(135deg, #FFF5EB 0%, #FFE8D2 100%); }
+  .lp-hero { position:relative; min-height:100vh; display:flex; align-items:center; justify-content:space-between; gap:40px; padding:120px 60px 80px; overflow:hidden; background:linear-gradient(135deg, #FFF5EB 0%, #FFE8D2 100%); }
   .lp-hero-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.15; filter:saturate(0.8); }
   .lp-hero-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,232,210,0.95) 0%,rgba(255,245,235,0.8) 50%,rgba(255,232,210,0.6) 100%); }
-  .lp-hero-content { position:relative; z-index:1; max-width:660px; animation:fadeUp 0.8s ease both; }
+  .lp-hero-content { position:relative; z-index:1; max-width:580px; animation:fadeUp 0.8s ease both; }
+  .lp-hero-image { position:relative; z-index:1; flex-shrink:0; width:400px; height:500px; border-radius:24px; overflow:hidden; box-shadow:0 24px 60px rgba(136,33,0,0.2); animation:fadeUp 1s ease 0.2s both; }
+  .lp-hero-image img { width:100%; height:100%; object-fit:cover; object-position:center top; }
   .lp-pill { display:inline-flex; align-items:center; gap:8px; background:rgba(136,33,0,0.08); border:1px solid rgba(136,33,0,0.2); color:#882100; padding:7px 16px; border-radius:100px; font-size:13px; font-weight:600; margin-bottom:28px; }
   .lp-pill-dot { width:6px; height:6px; border-radius:50%; background:#882100; animation:pulse 2s infinite; }
   .lp-hero-title { font-family:'Syne',sans-serif; font-size:clamp(44px,7vw,78px); font-weight:800; line-height:1.05; letter-spacing:-2px; margin-bottom:22px; color:#2d1810; }
@@ -304,7 +309,7 @@ const css = `
   .lp-see-all:hover { color:#882100; border-color:#882100; }
 
   /* Movies */
-  .lp-movies { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .lp-movies { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
   .lp-movie-card { cursor:pointer; border-radius:16px; overflow:hidden; background:white; border:1px solid rgba(136,33,0,0.1); transition:all 0.25s; animation:fadeUp 0.6s ease both; box-shadow:0 2px 12px rgba(136,33,0,0.06); }
   .lp-movie-card:hover { transform:translateY(-6px); box-shadow:0 12px 32px rgba(136,33,0,0.15); border-color:rgba(136,33,0,0.25); }
   .lp-movie-img-wrap { position:relative; height:260px; overflow:hidden; background:#FFF5EB; }
@@ -357,18 +362,29 @@ const css = `
   @keyframes pulse  { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
   /* Responsive */
+  @media(max-width:1100px){
+    .lp-hero-image { width:320px; height:400px; }
+  }
   @media(max-width:900px){
     .lp-nav{padding:16px 20px}
     .lp-nav-links{display:none}
-    .lp-hero{padding:100px 20px 60px}
+    .lp-hero{padding:100px 20px 60px; flex-direction:column; align-items:flex-start; gap:40px; min-height:auto}
+    .lp-hero-content{max-width:100%}
+    .lp-hero-image{width:100%; height:280px; border-radius:16px}
     .lp-section{padding:60px 20px}
     .lp-how{padding:60px 20px}
     .lp-cta{padding:80px 20px}
     .lp-footer{padding:36px 20px 20px}
-    .lp-movies{grid-template-columns:1fr}
+    .lp-movies{grid-template-columns:repeat(2,1fr)}
     .lp-steps{grid-template-columns:1fr}
     .lp-step:not(:last-child){border-right:none;border-bottom:1px solid rgba(136,33,0,0.1);margin-right:0;padding-right:0;margin-bottom:32px;padding-bottom:32px}
     .lp-footer-bottom{flex-direction:column;gap:16px;text-align:center}
     .lp-scroll-hint{display:none}
+  }
+  @media(max-width:560px){
+    .lp-hero-title{letter-spacing:-1px}
+    .lp-hero-btns{flex-direction:column}
+    .lp-movies{grid-template-columns:1fr}
+    .lp-hero-image{height:220px}
   }
 `;
