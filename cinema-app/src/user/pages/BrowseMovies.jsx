@@ -18,7 +18,7 @@ export default function BrowseMovies({ setBookingContext }) {
 
   const handleBook = movie => {
     setBookingContext(prev => ({ ...prev, movie, show: null, seats: [], total: "0.00" }));
-    navigate("/book");
+    navigate("../book");
   };
 
   return (

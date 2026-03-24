@@ -9,19 +9,15 @@ import BookingSuccess from "./pages/BookingSuccess";
 import "../styles/user.css";
 
 const TITLES = {
-  "/browse":   "Now Showing",
-  "/book":     "Book Tickets",
-  "/payment":  "Payment",
-  "/success":  "Booking Confirmed",
+  "/user/browse":   "Now Showing",
+  "/user/book":     "Book Tickets",
+  "/user/payment":  "Payment",
+  "/user/success":  "Booking Confirmed",
 };
 
-export default function UserApp() {
+export default function UserApp({ bookingContext, setBookingContext }) {
   const navigate  = useNavigate();
   const location  = useLocation();
-
-  const [bookingContext, setBookingContext] = useState({
-    movie: null, show: null, seats: [], total: "0.00", guestEmail: "",
-  });
 
   const title = Object.entries(TITLES).find(([k]) => location.pathname.startsWith(k))?.[1] ?? "ZeeShow";
 
@@ -37,8 +33,8 @@ export default function UserApp() {
         <nav className="sidebar-nav">
           <div className="nav-section-label">Menu</div>
           <button
-            className={`nav-item${location.pathname.startsWith("/browse") ? " active" : ""}`}
-            onClick={() => navigate("/browse")}
+            className={`nav-item${location.pathname.startsWith("/user/browse") ? " active" : ""}`}
+            onClick={() => navigate("browse")}
           >
             <span className="nav-icon"><FontAwesomeIcon icon={faFilm} /></span>
             Browse Movies
@@ -51,10 +47,10 @@ export default function UserApp() {
           <div className="topbar-title">{title}</div>
         </header>
         <Routes>
-          <Route path="/browse"  element={<BrowseMovies setBookingContext={setBookingContext} />} />
-          <Route path="/book"    element={<BookingFlow  bookingContext={bookingContext} setBookingContext={setBookingContext} />} />
-          <Route path="/payment" element={<Payment      bookingContext={bookingContext} setBookingContext={setBookingContext} />} />
-          <Route path="/success" element={<BookingSuccess bookingContext={bookingContext} />} />
+          <Route path="browse"  element={<BrowseMovies setBookingContext={setBookingContext} />} />
+          <Route path="book"    element={<BookingFlow  bookingContext={bookingContext} setBookingContext={setBookingContext} />} />
+          <Route path="payment" element={<Payment      bookingContext={bookingContext} setBookingContext={setBookingContext} />} />
+          <Route path="success" element={<BookingSuccess bookingContext={bookingContext} />} />
           <Route path="*"        element={<BrowseMovies setBookingContext={setBookingContext} />} />
         </Routes>
       </div>

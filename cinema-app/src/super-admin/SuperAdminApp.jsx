@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGauge, faBuilding, faUsers, faCalendar, faBookmark, faRightFromBracket, faCrown } from "@fortawesome/free-solid-svg-icons";
@@ -102,9 +102,32 @@ export default function SuperAdminApp() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // ── Shared state — this is what was missing ───────────────────────────────
-  const [theaters, setTheaters] = useState(THEATERS);
-  const [admins, setAdmins]     = useState(THEATER_ADMINS);
+  // ── Shared state with localStorage persistence ─────────────────────────
+  const [theaters, setTheaters] = useState(() => {
+    try {
+      const stored = localStorage.getItem("superTheaters");
+      return stored ? JSON.parse(stored) : THEATERS;
+    } catch {
+      return THEATERS;
+    }
+  });
+
+  const [admins, setAdmins] = useState(() => {
+    try {
+      const stored = localStorage.getItem("superAdmins");
+      return stored ? JSON.parse(stored) : THEATER_ADMINS;
+    } catch {
+      return THEATER_ADMINS;
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("superTheaters", JSON.stringify(theaters));
+  }, [theaters]);
+
+  useEffect(() => {
+    localStorage.setItem("superAdmins", JSON.stringify(admins));
+  }, [admins]);
 
   const title = Object.entries(TITLES).find(([k]) => location.pathname.startsWith(k))?.[1] ?? "Super Admin";
 

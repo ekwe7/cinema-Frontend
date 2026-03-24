@@ -12,7 +12,7 @@ export default function BookingFlow({ bookingContext, setBookingContext }) {
   const [step, setStep] = useState(0);
   const { movie, show, seats } = bookingContext;
 
-  if (!movie) { navigate("/browse"); return null; }
+  if (!movie) { navigate("../browse"); return null; }
 
   const availableShows = SHOWS.filter(s => s.movieId === movie.id);
 
@@ -30,7 +30,7 @@ export default function BookingFlow({ bookingContext, setBookingContext }) {
 
   return (
     <div className="page">
-      <button className="btn btn-ghost btn-sm mb-4" onClick={() => navigate("/browse")}>
+      <button className="btn btn-ghost btn-sm mb-4" onClick={() => navigate("../browse")}>
         <FontAwesomeIcon icon={faArrowLeft} /> Back to Movies
       </button>
 
@@ -78,7 +78,7 @@ export default function BookingFlow({ bookingContext, setBookingContext }) {
       {step === 1 && (
         <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", gap: 24 }}>
           <div className="card"><SeatMap selectedSeats={seats} onToggle={toggleSeat} theaterId={show?.theaterId} /></div>
-          <BookingSummary movie={movie} show={show} seats={seats} onBack={() => setStep(0)} onNext={() => navigate("/payment")} />
+          <BookingSummary movie={movie} show={show} seats={seats} onBack={() => setStep(0)} onNext={() => navigate("../payment")} />
         </div>
       )}
     </div>

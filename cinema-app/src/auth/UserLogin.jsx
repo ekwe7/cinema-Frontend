@@ -22,13 +22,13 @@ export default function UserLogin() {
     setTimeout(() => {
       if (mode === "login") {
         const r = loginUser(form.email, form.password);
-        if (r.success) navigate("/browse");
+        if (r.success) navigate("/user/browse");
         else setError(r.error);
       } else {
         if (form.password !== form.confirm) { setError("Passwords do not match."); setLoading(false); return; }
         if (form.password.length < 6) { setError("Password must be at least 6 characters."); setLoading(false); return; }
         const r = register(form.name, form.email, form.password);
-        if (r.success) navigate("/browse");
+        if (r.success) navigate("/user/browse");
         else setError(r.error);
       }
       setLoading(false);

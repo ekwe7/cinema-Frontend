@@ -67,8 +67,8 @@ export default function LandingPage() {
           </div>
 
           <div className="lp-nav-right">
-            <Link to="/browse" className="lp-nav-signin">Browse Movies</Link>
-            <Link to="/browse" className="lp-nav-cta">
+            <Link to="/user/browse" className="lp-nav-signin">Browse Movies</Link>
+            <Link to="/user/browse" className="lp-nav-cta">
               Get Started <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: 12 }} />
             </Link>
           </div>
@@ -98,11 +98,11 @@ export default function LandingPage() {
             </p>
 
             <div className="lp-hero-btns">
-              <button className="lp-btn-primary" onClick={() => navigate("/browse")}>
+              <button className="lp-btn-primary" onClick={() => navigate("/user/browse")}>
                 <FontAwesomeIcon icon={faPlay} />
                 Browse Movies
               </button>
-              <button className="lp-btn-ghost" onClick={() => navigate("/browse")}>
+              <button className="lp-btn-ghost" onClick={() => navigate("/user/browse")}>
                 Book Now
                 <FontAwesomeIcon icon={faChevronRight} style={{ fontSize: 12 }} />
               </button>
@@ -160,14 +160,14 @@ export default function LandingPage() {
               <div className="lp-label">On Screen Now</div>
               <h2 className="lp-section-title">Featured Films</h2>
             </div>
-            <Link to="/browse" className="lp-see-all">
+            <Link to="/user/browse" className="lp-see-all">
               View all films <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: 12 }} />
             </Link>
           </div>
 
           <div className="lp-movies">
             {MOVIE_IMAGES.map((m, index) => (
-              <div key={index} className="lp-movie-card" style={{ animationDelay: `${index * 0.1}s` }} onClick={() => navigate("/browse")}>
+              <div key={index} className="lp-movie-card" style={{ animationDelay: `${index * 0.1}s` }} onClick={() => navigate("/user/browse")}>
                 <div className="lp-movie-img-wrap">
                   <img src={m.image} alt={m.title} className="lp-movie-img" />
                   <div className="lp-movie-grad" />
@@ -226,7 +226,7 @@ export default function LandingPage() {
             <div className="lp-label" style={{ color: "rgba(232,201,122,0.6)", textAlign: "center" }}>Start Today</div>
             <h2 className="lp-cta-title">Ready for your next movie night?</h2>
             <p className="lp-cta-sub">Join thousands of cinema lovers who book smarter with ZeeShow.</p>
-            <button className="lp-btn-primary" onClick={() => navigate("/browse")}>
+            <button className="lp-btn-primary" onClick={() => navigate("/user/browse")}>
               <FontAwesomeIcon icon={faTicket} />
               Book Your Tickets
             </button>

@@ -76,24 +76,24 @@ export const THEATERS = [
 ];
 
 export const SHOWS = [
-      { id: "s1", movieId: "m1", theaterId: "t1", startTime: "10:00 AM", date: "2026-02-20", price: 18.5 },
-      { id: "s2", movieId: "m2", theaterId: "t1", startTime: "1:30 PM", date: "2026-02-20", price: 18.5},
-      { id: "s3", movieId: "m3", theaterId: "t2", startTime: "4:00 PM", date: "2026-02-20", price: 15.0 },
-      { id: "s4", movieId: "m4", theaterId: "t3", startTime: "7:30 PM", date: "2026-02-20", price: 12.0 },
-      { id: "s5", movieId: "m5", theaterId: "t4", startTime: "9:00 PM", date: "2026-02-20", price: 20.0 },
-      { id: "s6", movieId: "m6", theaterId: "t5", startTime: "6:00 PM", date: "2026-02-20", price: 16.0 },
-      { id: "s7", movieId: "m7", theaterId: "t1", startTime: "8:00 PM", date: "2026-02-20", price: 18.0 }
+      { id: "s1", movieId: "m1", theaterId: "t1", startTime: "10:00 AM", date: "2026-12-20", price: 18.5 },
+      { id: "s2", movieId: "m2", theaterId: "t1", startTime: "1:30 PM", date: "2026-12-20", price: 18.5},
+      { id: "s3", movieId: "m3", theaterId: "t2", startTime: "4:00 PM", date: "2026-12-20", price: 15.0 },
+      { id: "s4", movieId: "m4", theaterId: "t3", startTime: "7:30 PM", date: "2026-12-20", price: 12.0 },
+      { id: "s5", movieId: "m5", theaterId: "t4", startTime: "9:00 PM", date: "2026-12-20", price: 20.0 },
+      { id: "s6", movieId: "m6", theaterId: "t5", startTime: "6:00 PM", date: "2026-12-20", price: 16.0 },
+      { id: "s7", movieId: "m7", theaterId: "t1", startTime: "8:00 PM", date: "2026-12-20", price: 18.0 }
 
 ];
 
 export const BOOKINGS = [
-    { id: "BK1021", userId: "u1", movieId: "m1", showId: "s2", theaterId: "t1", seats: ["D4",], total: 37.0,  status: "Confirmed", date: "2026-02-20" },
-    { id: "BK1022", userId: "u2", movieId: "m3", showId: "s3", theaterId: "t2", seats: ["F1", "C2", "H2"], total: 45.0, status: "Pending", date: "2026-02-20" },
-    { id: "BK1023", userId: "u3", movieId: "m5", showId: "s5", theaterId: "t3", seats: ["A2", "E1" ], total: 40.0, status: "Confirmed", date: "2026-02-20" },
-    { id: "BK1024", userId: "u4", movieId: "m7", showId: "s7", theaterId: "t4", seats: ["C5", "C6", "C8"], total: 54.0, status: "Cancelled", date: "2026-02-20" },
-    { id: "BK1025", userId: "u5", movieId: "m2", showId: "s2", theaterId: "t5", seats: ["B5", "B4"], total: 37.0, status: "Confirmed", date: "2026-02-20" },
-    { id: "BK1026", userId: "u1", movieId: "m4", showId: "s4", theaterId: "t6", seats: ["E8"], total: 24.0, status: "Pending", date: "2026-02-20" },
-    { id: "BK1027", userId: "u2", movieId: "m6", showId: "s6", theaterId: "t7", seats: ["G1", "G2"], total: 32.0, status: "Confirmed", date: "2026-02-20" }
+    { id: "BK1021", userId: "u1", movieId: "m1", showId: "s2", theaterId: "t1", seats: ["D4",], total: 37.0,  status: "Confirmed", date: "2026-12-20" },
+    { id: "BK1022", userId: "u2", movieId: "m3", showId: "s3", theaterId: "t2", seats: ["F1", "C2", "H2"], total: 45.0, status: "Pending", date: "2026-12-20" },
+    { id: "BK1023", userId: "u3", movieId: "m5", showId: "s5", theaterId: "t3", seats: ["A2", "E1" ], total: 40.0, status: "Confirmed", date: "2026-12-20" },
+    { id: "BK1024", userId: "u4", movieId: "m7", showId: "s7", theaterId: "t4", seats: ["C5", "C6", "C8"], total: 54.0, status: "Cancelled", date: "2026-12-20" },
+    { id: "BK1025", userId: "u5", movieId: "m2", showId: "s2", theaterId: "t5", seats: ["B5", "B4"], total: 37.0, status: "Confirmed", date: "2026-12-20" },
+    { id: "BK1026", userId: "u1", movieId: "m4", showId: "s4", theaterId: "t6", seats: ["E8"], total: 24.0, status: "Pending", date: "2026-12-20" },
+    { id: "BK1027", userId: "u2", movieId: "m6", showId: "s6", theaterId: "t5", seats: ["G1", "G2"], total: 32.0, status: "Confirmed", date: "2026-12-20" }
 ];
 
 export const THEATER_ADMINS = [

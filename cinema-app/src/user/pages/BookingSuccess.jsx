@@ -10,7 +10,7 @@ export default function BookingSuccess({ bookingContext }) {
   const bookingId = useRef(`BK${Math.floor(Math.random() * 9000 + 1000)}`);
   const { movie, show, seats, total, guestEmail } = bookingContext;
 
-  useEffect(() => { if (!movie) navigate("/browse"); }, []);
+  useEffect(() => { if (!movie) navigate("../browse"); }, []);
   if (!movie) return null;
 
   const grandTotal = (parseFloat(total || 0) + 1.5).toFixed(2);
@@ -62,7 +62,7 @@ export default function BookingSuccess({ bookingContext }) {
 
         {/* Actions */}
         <div className="flex gap-3 justify-center" style={{ flexWrap: "wrap" }}>
-          <button className="btn btn-gold btn-lg" onClick={() => navigate("/browse")}>
+          <button className="btn btn-gold btn-lg" onClick={() => navigate("../browse")}>
             <FontAwesomeIcon icon={faTicket} /> Browse More Movies
           </button>
           

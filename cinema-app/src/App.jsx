@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useState } from "react";
 import { AuthProvider, RequireAdmin, RequireSuperAdmin } from "./auth/AuthContext";
 
 // Public
@@ -12,6 +13,11 @@ import AdminApp      from "./admin/AdminApp";
 import SuperAdminApp from "./super-admin/SuperAdminApp";
 
 export default function App() {
+  // ── Shared booking context for user routes ─────────────────────────────
+  const [bookingContext, setBookingContext] = useState({
+    movie: null, show: null, seats: [], total: "0.00", guestEmail: "",
+  });
+
   return (
     <AuthProvider>
       <Routes>
@@ -37,11 +43,11 @@ export default function App() {
           }
         />
 
-        {/* Guest user routes — no auth required */}
-        <Route path="/browse"  element={<UserApp />} />
-        <Route path="/book"    element={<UserApp />} />
-        <Route path="/payment" element={<UserApp />} />
-        <Route path="/success" element={<UserApp />} />
+        {/* Guest user routes — shared booking context */}
+        <Route
+          path="/user/*"
+          element={<UserApp bookingContext={bookingContext} setBookingContext={setBookingContext} />}
+        />
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

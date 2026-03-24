@@ -16,7 +16,7 @@ export default function Payment({ bookingContext, setBookingContext }) {
 
   const { movie, show, seats, total } = bookingContext;
 
-  if (!movie || !show || seats.length === 0) { navigate("/book"); return null; }
+  if (!movie || !show || seats.length === 0) { navigate("../book"); return null; }
 
   const grandTotal = (parseFloat(total) + 1.5).toFixed(2);
   const set = f => e => { setForm({ ...form, [f]: e.target.value }); setErrors({ ...errors, [f]: "" }); };
@@ -39,7 +39,7 @@ export default function Payment({ bookingContext, setBookingContext }) {
     if (!validate()) return;
     setLoading(true);
     setBookingContext(prev => ({ ...prev, guestEmail: form.email }));
-    setTimeout(() => { navigate("/success"); }, 1800);
+    setTimeout(() => { navigate("../success"); }, 1800);
   };
 
   const methods = [
@@ -50,7 +50,7 @@ export default function Payment({ bookingContext, setBookingContext }) {
 
   return (
     <div className="page">
-      <button className="btn btn-ghost btn-sm mb-4" onClick={() => navigate("/book")}>
+      <button className="btn btn-ghost btn-sm mb-4" onClick={() => navigate("../book")}>
         <FontAwesomeIcon icon={faArrowLeft} /> Back to Seats
       </button>
       <div className="page-title">Payment</div>
