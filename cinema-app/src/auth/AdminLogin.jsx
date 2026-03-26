@@ -30,7 +30,7 @@ export default function AdminLogin() {
     <div style={S.page}>
       <div style={S.card}>
         <div style={S.iconWrap}>
-          <FontAwesomeIcon icon={faShield} style={{ fontSize: 28, color: "#a78bfa" }} />
+          <FontAwesomeIcon icon={faShield} style={{ fontSize: 28, color: "#cc0056" }} />
         </div>
         <h1 style={S.title}>Theater Admin Access</h1>
         <p style={S.sub}>Authorised personnel only</p>
@@ -83,11 +83,11 @@ const S = {
   sub: { fontSize: 12, color: "#4a4a55", textAlign: "center", marginBottom: 28, textTransform: "uppercase", letterSpacing: 2 },
   inputWrap: { position: "relative" },
   inputIcon: { position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "#4a4a55", fontSize: 12, pointerEvents: "none" },
-  darkInput: { background: "#1a1a24", borderColor: "rgba(139,92,246,0.2)", color: "#f0f0f0" },
+  darkInput: { background: "#1a1a24", borderColor: "rgba(255,51,137,0.2)", color: "#f0f0f0" },
   error: { background: "#2d1515", color: "#f87171", border: "1px solid #7f1d1d", borderRadius: 8, padding: "10px 14px", fontSize: 13, marginBottom: 12 },
   locked: { background: "#1f1200", color: "#f59e0b", border: "1px solid #78350f", borderRadius: 8, padding: 16, fontSize: 14, textAlign: "center", lineHeight: 1.6 },
   submitBtn: { background: "#7c3aed", color: "white", border: "none", fontFamily: "inherit", marginTop: 4 },
   hint: { marginTop: 20, padding: "10px 14px", background: "rgba(255,255,255,0.03)", borderRadius: 8, fontSize: 12, color: "#4a4a55", textAlign: "center" },
-  code: { color: "#a78bfa", fontFamily: "monospace", fontSize: 11 },
+  code: { color: "#ff3389", fontFamily: "monospace", fontSize: 11 },
   footer: { fontSize: 11, color: "#2a2a35", textAlign: "center", marginTop: 20, lineHeight: 1.5 },
 };

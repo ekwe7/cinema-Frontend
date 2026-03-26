@@ -4,8 +4,8 @@ import { useAuth } from "../../auth/AuthContext";
 import { BOOKINGS, MOVIES, SHOWS, THEATERS } from "../../data/mockData";
 
 const ACTIVITY = [
-  { text: "New booking #BK1024 by Tom Wright",        time: "2 min ago",  color: "#a78bfa" },
-  { text: "Seat G7 marked as occupied",               time: "18 min ago", color: "#e8c97a" },
+  { text: "New booking #BK1024 by Tom Wright",        time: "2 min ago",  color: "#cc0056" },
+  { text: "Seat G7 marked as occupied",               time: "18 min ago", color: "#ff3389" },
   { text: "Show 'Dune: Part Three 10AM' sold out",    time: "1 hr ago",   color: "#ef4444" },
   { text: "Payment processed for booking #BK1021",    time: "5 hr ago",   color: "#22c55e" },
 ];

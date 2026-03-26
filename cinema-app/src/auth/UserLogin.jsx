@@ -39,7 +39,7 @@ export default function UserLogin() {
     <div style={S.page}>
       <div style={S.card}>
         <Link to="/" style={S.logo}>
-          <FontAwesomeIcon icon={faFilm} style={{ color: "#e8c97a", fontSize: 20 }} />
+          <FontAwesomeIcon icon={faFilm} style={{ color: "#ff3389", fontSize: 20 }} />
           <span style={S.logoText}>ZeeShow</span>
         </Link>
         <p style={S.tagline}>{mode === "login" ? "Welcome back. Sign in to continue." : "Create your account to get started."}</p>

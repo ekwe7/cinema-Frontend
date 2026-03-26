@@ -40,7 +40,7 @@ export default function AdminApp() {
       <aside className="sidebar">
         <div className="sidebar-logo">
           <a href="/" className="logo-wrap">
-            <div className="logo-icon" style={{ color: "#a78bfa" }}><FontAwesomeIcon icon={faShield} /></div>
+            <div className="logo-icon" style={{ color: "#cc0056" }}><FontAwesomeIcon icon={faShield} /></div>
             <span className="logo-text">ZeeShow</span>
             <span className="logo-badge badge-purple">Admin</span>
           </a>

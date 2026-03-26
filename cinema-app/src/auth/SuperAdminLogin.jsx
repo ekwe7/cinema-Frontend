@@ -30,7 +30,7 @@ export default function SuperAdminLogin() {
     <div style={S.page}>
       <div style={S.card}>
         <div style={S.iconWrap}>
-          <FontAwesomeIcon icon={faCrown} style={{ fontSize: 28, color: "#e8c97a" }} />
+          <FontAwesomeIcon icon={faCrown} style={{ fontSize: 28, color: "#ff3389" }} />
         </div>
         <h1 style={S.title}>Super Admin</h1>
         <p style={S.sub}>Root system access</p>
@@ -77,17 +77,17 @@ export default function SuperAdminLogin() {
 
 const S = {
   page: { minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#030405", padding: 24 },
-  card: { background: "#0a0805", border: "1px solid rgba(232,201,122,0.15)", borderRadius: 20, padding: "44px 40px", width: "100%", maxWidth: 400, boxShadow: "0 20px 60px rgba(0,0,0,0.8)" },
-  iconWrap: { width: 64, height: 64, borderRadius: "50%", background: "rgba(232,201,122,0.08)", border: "1px solid rgba(232,201,122,0.2)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" },
-  title: { fontFamily: "'Syne',sans-serif", fontSize: 22, fontWeight: 800, color: "#e8c97a", textAlign: "center", marginBottom: 6 },
-  sub: { fontSize: 11, color: "#4a3f2a", textAlign: "center", marginBottom: 28, textTransform: "uppercase", letterSpacing: 3 },
+  card: { background: "#0a0805", border: "1px solid rgba(255,51,137,0.15)", borderRadius: 20, padding: "44px 40px", width: "100%", maxWidth: 400, boxShadow: "0 20px 60px rgba(0,0,0,0.8)" },
+  iconWrap: { width: 64, height: 64, borderRadius: "50%", background: "rgba(255,51,137,0.08)", border: "1px solid rgba(255,51,137,0.2)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" },
+  title: { fontFamily: "'Syne',sans-serif", fontSize: 22, fontWeight: 800, color: "#ff3389", textAlign: "center", marginBottom: 6 },
+  sub: { fontSize: 11, color: "#4a4a55", textAlign: "center", marginBottom: 28, textTransform: "uppercase", letterSpacing: 3 },
   inputWrap: { position: "relative" },
-  inputIcon: { position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "#4a3f2a", fontSize: 12, pointerEvents: "none" },
-  darkInput: { background: "#120f08", borderColor: "rgba(232,201,122,0.15)", color: "#e8c97a" },
+  inputIcon: { position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "#4a4a55", fontSize: 12, pointerEvents: "none" },
+  darkInput: { background: "#120f08", borderColor: "rgba(255,51,137,0.15)", color: "#ff3389" },
   error: { background: "#1a0e00", color: "#f59e0b", border: "1px solid #78350f", borderRadius: 8, padding: "10px 14px", fontSize: 13, marginBottom: 12 },
   locked: { background: "#1a0e00", color: "#f59e0b", border: "1px solid #78350f", borderRadius: 8, padding: 16, fontSize: 14, textAlign: "center", lineHeight: 1.6 },
-  submitBtn: { background: "linear-gradient(135deg, #c9a832, #e8c97a)", color: "#080500", border: "none", fontFamily: "inherit", fontWeight: 700, marginTop: 4 },
-  hint: { marginTop: 20, padding: "10px 14px", background: "rgba(232,201,122,0.04)", borderRadius: 8, fontSize: 11, color: "#4a3f2a", textAlign: "center" },
-  code: { color: "#e8c97a", fontFamily: "monospace", fontSize: 10 },
-  footer: { fontSize: 11, color: "#2a2015", textAlign: "center", marginTop: 20, lineHeight: 1.5 },
+  submitBtn: { background: "linear-gradient(135deg, #cc0056, #ff3389)", color: "#ffffff", border: "none", fontFamily: "inherit", fontWeight: 700, marginTop: 4 },
+  hint: { marginTop: 20, padding: "10px 14px", background: "rgba(255,51,137,0.04)", borderRadius: 8, fontSize: 11, color: "#9a8a9a", textAlign: "center" },
+  code: { color: "#ff3389", fontFamily: "monospace", fontSize: 10 },
+  footer: { fontSize: 11, color: "#4a4a55", textAlign: "center", marginTop: 20, lineHeight: 1.5 },
 };

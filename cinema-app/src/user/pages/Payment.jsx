@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faCreditCard, faPaypal, faApple } from "@fortawesome/free-brands-svg-icons";
 import { faPaypal, faApple } from "@fortawesome/free-brands-svg-icons";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
 import { faLock, faArrowLeft, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
@@ -94,14 +93,33 @@ export default function Payment({ bookingContext, setBookingContext }) {
                 {errors.number && <div className="text-danger text-sm mt-2">{errors.number}</div>}
               </div>
               <div className="input-row">
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label className="form-label">Expiry</label>
                   <input className="form-input" placeholder="MM/YY" value={form.expiry} onChange={set("expiry")} maxLength={5} />
                   {errors.expiry && <div className="text-danger text-sm mt-2">{errors.expiry}</div>}
-                </div>
+                </div> */}
+
+                  <div className="form-group">
+                    <label className="form-label">Expiry</label>
+                    <input
+                      className="form-input"
+                      placeholder="MM/YY"
+                      value={form.expiry}
+                      onChange={(e) => {
+                        let value = e.target.value.replace(/\D/g, ""); // remove non-digits
+                        if (value.length >= 3) {
+                          value = value.slice(0, 2) + "/" + value.slice(2, 4); // auto insert /
+                        }
+                        set("expiry")({ target: { value } });
+                      }}
+                      maxLength={5}
+                    />
+                    {errors.expiry && <div className="text-danger text-sm mt-2">{errors.expiry}</div>}
+                  </div>
+
                 <div className="form-group">
                   <label className="form-label">CVV</label>
-                  <input className="form-input" type="password" placeholder="•••" value={form.cvv} onChange={set("cvv")} maxLength={4} />
+                  <input className="form-input" type="password" placeholder="•••" value={form.cvv} onChange={set("cvv")} maxLength={3} />
                   {errors.cvv && <div className="text-danger text-sm mt-2">{errors.cvv}</div>}
                 </div>
               </div>

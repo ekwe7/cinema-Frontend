@@ -136,11 +136,11 @@ export default function SuperAdminApp() {
       <aside className="sidebar">
         <div className="sidebar-logo">
           <a href="/" className="logo-wrap">
-            <div className="logo-icon" style={{ color: "#e8c97a" }}>
+            <div className="logo-icon" style={{ color: "#ff3389" }}>
               <FontAwesomeIcon icon={faCrown} />
             </div>
             <span className="logo-text">ZeeShow</span>
-            <span className="logo-badge" style={{ background: "rgba(232,201,122,0.15)", color: "#e8c97a" }}>Root</span>
+            <span className="logo-badge" style={{ background: "rgba(255,51,137,0.15)", color: "#ff3389" }}>Root</span>
           </a>
         </div>
 
@@ -161,7 +161,7 @@ export default function SuperAdminApp() {
         <div className="sidebar-footer">
           <div className="user-info">
             <div className="user-name">{user?.name}</div>
-            <div className="user-role" style={{ color: "#e8c97a" }}>Super Admin</div>
+            <div className="user-role" style={{ color: "#ff3389" }}>Super Admin</div>
           </div>
           <button className="btn btn-ghost btn-sm btn-full" onClick={() => { logout(); navigate("/"); }}>
             <FontAwesomeIcon icon={faRightFromBracket} /> Sign Out
@@ -173,10 +173,10 @@ export default function SuperAdminApp() {
         <header className="topbar">
           <div className="topbar-title">{title}</div>
           <div className="topbar-right">
-            <span className="badge" style={{ background: "rgba(232,201,122,0.15)", color: "#e8c97a" }}>
+            <span className="badge" style={{ background: "rgba(255,51,137,0.15)", color: "#ff3389" }}>
               <FontAwesomeIcon icon={faCrown} /> Super Admin
             </span>
-            <div className="avatar" style={{ background: "rgba(232,201,122,0.2)", color: "#e8c97a" }}>
+            <div className="avatar" style={{ background: "rgba(255,51,137,0.2)", color: "#ff3389" }}>
               {user?.name?.[0]?.toUpperCase()}
             </div>
           </div>
