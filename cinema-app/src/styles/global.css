@@ -224,3 +224,171 @@ tr:hover td { background: var(--surface2); }
 @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
 @keyframes spin { to { transform: rotate(360deg); } }
 .fade-up { animation: fadeUp 0.5s ease both; }
+
+/* ── Responsive Design ───────────────────────────────────── */
+
+/* Tablet (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .sidebar { width: 220px; }
+  .main-content { margin-left: 220px; }
+  .topbar { padding: 14px 20px; }
+  .page { padding: 24px; }
+  .page-title { font-size: 20px; }
+  .card { padding: 18px; }
+  .two-col { gap: 18px; }
+  .three-col { gap: 14px; }
+  .four-col { gap: 12px; }
+  .btn-lg { padding: 10px 22px; font-size: 13px; }
+  .modal { padding: 24px; }
+  table th, table td { padding: 9px 10px; font-size: 12px; }
+}
+
+/* Mobile (320px to 767px) */
+@media (max-width: 767px) {
+  .sidebar { 
+    width: 280px; 
+    position: fixed; 
+    left: -280px; 
+    transition: left 0.3s; 
+    z-index: 999;
+    height: 100vh;
+  }
+  .sidebar.open { left: 0; }
+  .main-content { 
+    margin-left: 0; 
+    min-height: 100vh; 
+    padding-top: 60px;
+  }
+  .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .topbar-title { font-size: 16px; }
+  .page { 
+    padding: 20px;
+    margin-top: 0;
+  }
+  .page-title { 
+    font-size: 20px; 
+    margin-bottom: 4px;
+  }
+  .page-sub { 
+    font-size: 13px; 
+    margin-bottom: 20px;
+  }
+  .card { padding: 16px; }
+  .two-col { 
+    grid-template-columns: 1fr; 
+    gap: 16px;
+  }
+  .three-col { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 12px;
+  }
+  .four-col { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 12px;
+  }
+  .btn { 
+    padding: 8px 16px; 
+    font-size: 13px;
+  }
+  .btn-sm { 
+    padding: 5px 10px; 
+    font-size: 11px;
+  }
+  .btn-lg { 
+    padding: 10px 20px; 
+    font-size: 13px;
+  }
+  .btn-full {
+    width: 100%;
+  }
+  .badge { 
+    padding: 2px 8px; 
+    font-size: 10px;
+  }
+  .section-header { 
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .modal {
+    width: 90%;
+    max-width: 100%;
+    padding: 24px;
+    border-radius: 16px;
+  }
+  .modal-overlay {
+    padding: 16px;
+  }
+  .form-group { margin-bottom: 14px; }
+  .form-label { font-size: 12px; margin-bottom: 5px; }
+  .form-input { 
+    padding: 9px 12px; 
+    font-size: 13px;
+    border-radius: 8px;
+  }
+  .input-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  table th, table td { 
+    padding: 10px; 
+    font-size: 12px;
+  }
+  table {
+    font-size: 12px;
+  }
+  .tabs { 
+    gap: 3px;
+    padding: 3px;
+  }
+  .tab { 
+    padding: 6px 12px; 
+    font-size: 12px;
+    border-radius: 6px;
+  }
+  .empty-state { 
+    padding: 40px 20px;
+  }
+  .empty-icon { 
+    font-size: 32px;
+  }
+  .search-bar .form-input { 
+    padding-left: 36px;
+  }
+  .search-icon-wrap { 
+    left: 10px;
+    font-size: 12px;
+  }
+  
+  /* ──── Ultra-Small Devices (320px) ──── */
+  @media (max-width: 400px) {
+    .page { padding: 12px; }
+    .page-title { font-size: 15px; margin-bottom: 1px; }
+    .page-sub { font-size: 10px; margin-bottom: 12px; }
+    .card { padding: 10px; border-radius: 8px; }
+    .btn { padding: 6px 10px; font-size: 10px; }
+    .btn-lg { padding: 7px 14px; font-size: 11px; }
+    .modal { padding: 14px; }
+    .modal-title { font-size: 13px; }
+    .form-input { padding: 6px 8px; font-size: 13px; height: 36px; }
+    .form-label { font-size: 10px; margin-bottom: 3px; }
+    .topbar { padding: 8px 8px; }
+    .section-title { font-size: 13px; }
+    table th { font-size: 9px; padding: 4px; }
+    table td { padding: 4px; font-size: 10px; }
+    .tab { padding: 3px 6px; font-size: 9px; }
+  }
+  /* ──────────────── BOTTOM OF MOBILE ──────────────── */
+}
+
